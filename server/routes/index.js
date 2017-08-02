@@ -1,12 +1,12 @@
 var express = require('express')
 var router = express.Router()
 
-var db = require('../db')
+var db = require('../db/db')
 
 router.get('/team/profile/:id', function(req, res) {
   db.getProfile(req.params.id, req.app.get('db'))
   .then(function(player) {
-    res.render('profile', player[0])
+    res.json(player[0])
     console.log(player);
   }).catch(function (err) {
     res.status(500).send('DATABASE ERROR: ' + err.message)
@@ -20,8 +20,6 @@ router.post('/team/profile/:id', function(req, res) {
     .then(function(player) {
       res.redirect('/team/profile/' + id)
     })
-
-
 })
 
 router.get('/index', function(req, res) {
@@ -33,8 +31,8 @@ router.get('/index', function(req, res) {
 
 router.get('/team', function(req, res) {
   db.getPlayer(req.app.get('db'))
-    .then(function(player) {
-      res.render('team', {players: player})
+    .then(function(players) {
+      res.json(players)
     })
     .catch(function (err) {
       res.status(500).send('DATABASE ERROR: ' + err.message)
@@ -42,7 +40,7 @@ router.get('/team', function(req, res) {
 })
 
 router.get('/', function (req, res) {
-  res.redirect('/team')
+  res.json(['hello', 'hi'])
 })
 
 

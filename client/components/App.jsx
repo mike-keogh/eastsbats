@@ -1,41 +1,34 @@
 import React from 'react'
-import {getSomething} from '../api'
+import {getTeam} from '../api'
+import Team from './Team'
 
 export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       err: null,
-      data: []
+      team: []
     }
   }
   // This didMount function will make a request upon load, rather than waiting for a button click
 
-  // componentDidMount() {
-  //   this.refreshData( )
-  // }
-  saveData(err, data) {
-    this.setState({err, data: data || []})
+  componentDidMount() {
+    this.refreshTeamData()
   }
-  refreshData() {
-    getSomething(this.saveData.bind(this))
+  saveTeam(err, team) {
+    this.setState({err, team: team || []})
+  }
+  refreshTeamData() {
+    getTeam(this.saveTeam.bind(this))
   }
   render() {
-    let {err, data} = this.state
-    const renderDataItem = (dataItem, key) => <h3 key={key}>{dataItem}</h3>
-    const renderDataList = (dataList) => dataList.map(renderDataItem)
+    let {err, team} = this.state
+
     return (
       <div>
-        <h1>React/Api development has begun!</h1>
-        <button onClick={this.refreshData.bind(this)}>Get Data</button>
-        {err
-          ? <h2>There is an error ;-; <br/> {err.message}</h2>
-          : <h2>There is no error :)</h2>
-        }
-        {(data.length != 0)
-          ? <h2>There is data: <br/>{renderDataList(data)}</h2>
-          : <h2>There is no data ;-;</h2>
-        }
+        Hello
+        <h1>{err}</h1>
+        <Team team={team} />
       </div>
     )
   }
