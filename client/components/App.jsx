@@ -2,6 +2,7 @@ import React from 'react'
 import {getTeam} from '../api'
 import Team from './Team'
 import Nav from './Nav'
+import Player from './Player'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -17,12 +18,15 @@ export default class App extends React.Component {
   componentDidMount() {
     this.refreshTeamData()
   }
+
   saveTeam(err, team) {
     this.setState({err, team: team || []})
   }
+
   refreshTeamData() {
     getTeam(this.saveTeam.bind(this))
   }
+
   toggleShowTeam() {
     this.setState(
       {showVisible: !this.state.showVisible}
@@ -42,7 +46,8 @@ export default class App extends React.Component {
       <div>
         <Nav toggleShowTeam={this.toggleShowTeam.bind(this)} />
         <h1>{err}</h1>
-        {this.state.showVisible && <Team team={team} />}
+        {this.state.showVisible && <Team team={team} selectPlayer={this.selectPlayer.bind(this)}  />}
+        <Player  />
       </div>
     )
   }
