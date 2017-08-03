@@ -8,10 +8,11 @@ export default class App extends React.Component {
     super(props)
     this.state = {
       err: null,
-      team: []
+      team: [],
+      showVisible: false,
+      showPlayer: false
     }
   }
-  // This didMount function will make a request upon load, rather than waiting for a button click
 
   componentDidMount() {
     this.refreshTeamData()
@@ -22,15 +23,26 @@ export default class App extends React.Component {
   refreshTeamData() {
     getTeam(this.saveTeam.bind(this))
   }
+  toggleShowTeam() {
+    this.setState(
+      {showVisible: !this.state.showVisible}
+    )
+  }
+  selectPlayer() {
+    this.setState(
+      {showPlayer: !this.state.showPlayer}
+    )
+  }
+
+
   render() {
     let {err, team} = this.state
 
     return (
       <div>
-        <Nav />
-        Hello
+        <Nav toggleShowTeam={this.toggleShowTeam.bind(this)} />
         <h1>{err}</h1>
-        <Team team={team} />
+        {this.state.showVisible && <Team team={team} />}
       </div>
     )
   }
