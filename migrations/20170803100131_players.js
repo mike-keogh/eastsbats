@@ -4,7 +4,12 @@ exports.up = function(knex, Promise) {
     table.increments('id').primary()
     table.string('name')
     table.string('nickname')
-    table.string('characteristic')
+    table.string('batting_style')
+    table.string('bowling_style')
+    table.integer('age')
+    table.string('born')
+    table.string('teams')
+    table.string('playing_role')
   })
 
 };

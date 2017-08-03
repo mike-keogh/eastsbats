@@ -24,7 +24,7 @@ export function getTeam(callback) {
 
 export function getPlayerProfile(id, callback) {
   request
-    .get('/v1/team/profile/' + 2)
+    .get('/v1/team/profile/' + id)
     .end((err, res) => {
       if (err) callback(err)
       else callback(null, res.body)
