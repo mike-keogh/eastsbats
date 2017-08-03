@@ -1,6 +1,7 @@
 import React from 'react'
 import {getTeam} from '../api'
 import Team from './Team'
+import Nav from './Nav'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -26,6 +27,7 @@ export default class App extends React.Component {
 
     return (
       <div>
+        <Nav />
         Hello
         <h1>{err}</h1>
         <Team team={team} />
