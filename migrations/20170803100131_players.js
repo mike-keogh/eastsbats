@@ -10,6 +10,7 @@ exports.up = function(knex, Promise) {
     table.string('born')
     table.string('teams')
     table.string('playing_role')
+    table.string('image')
   })
 
 };

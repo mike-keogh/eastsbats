@@ -1,10 +1,16 @@
 import React from 'react'
-import Team from './Team'
 
-export default function Player(props) {
+export default function Player({player}) {
+
   return (
     <div>
-      <p>hello</p>
+      <ul>
+        <li>{player.name}</li>
+        <li>{player.age}</li>
+        <li>{player.batting_style}</li>
+        <li>{player.bowling_average}</li>
+        <li>{player.batting_runs}</li>
+      </ul>
     </div>
   )
 }

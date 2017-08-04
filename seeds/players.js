@@ -12,7 +12,8 @@ exports.seed = function(knex, Promise) {
         born: '5th March 1993, Wellington',
         age: '24',
         teams: ' ECC Bats',
-        playing_role: 'Top order batsman, Wicket Keeper'
+        playing_role: 'Top order batsman, Wicket Keeper',
+        image: 'images/Felix_Faisandier.jpg'
 
       }, {
         id: 2,
@@ -103,7 +104,7 @@ exports.seed = function(knex, Promise) {
         batting_style: 'Right-hand bat',
         bowling_style: 'Right arm fast',
         nickname: 'mf zazu',
-        born: '1st January 1992, Waikato',
+        born: '1st January 1992, Tokoroa',
         age: 25,
         teams: 'ECC Sharks, ECC Bats',
         playing_role: 'Opening bowler'

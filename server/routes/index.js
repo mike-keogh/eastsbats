@@ -12,27 +12,24 @@ router.get('/team/profile/:id', function(req, res) {
   })
 })
 
-router.post('/team/profile/:id', function(req, res) {
-  var id = req.params.id
-  db.editProfile(id, req.body, req.app.get('db'))
-    .then(function(player) {
-      res.redirect('/team/profile/' + id)
-    })
-})
+// router.post('/team/profile/:id', function(req, res) {
+//   var id = req.params.id
+//   var body = req.body
+//   db.editProfile(id, body, req.app.get('db'))
+//     .then(function(player) {
+//       res.redirect('/team/profile/' + id)
+//     })
+// })
 
 router.get('/team', function(req, res) {
   db.getPlayer(req.app.get('db'))
     .then(function(players) {
       res.json(players)
+      console.log(players);
     })
     .catch(function (err) {
       res.status(500).send('DATABASE ERROR: ' + err.message)
     })
 })
-
-router.get('/', function (req, res) {
-  res.json(['hello', 'hi'])
-})
-
 
 module.exports = router

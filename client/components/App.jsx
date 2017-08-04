@@ -1,5 +1,5 @@
 import React from 'react'
-import {getTeam} from '../api'
+import {getTeam, getPlayerProfile} from '../api'
 import Team from './Team'
 import Nav from './Nav'
 import Player from './Player'
@@ -11,7 +11,7 @@ export default class App extends React.Component {
       err: null,
       team: [],
       showVisible: false,
-      showPlayer: false
+      showPlayer: null
     }
   }
 
@@ -32,22 +32,24 @@ export default class App extends React.Component {
       {showVisible: !this.state.showVisible}
     )
   }
-  selectPlayer() {
+
+  selectPlayerById(player) {
+    console.log(player)
+    // getPlayerProfile('id')
     this.setState(
-      {showPlayer: !this.state.showPlayer}
+      {showPlayer: player}
     )
   }
 
-
   render() {
-    let {err, team} = this.state
-
+    let {err, team, showPlayer, showVisible} = this.state
     return (
       <div>
         <Nav toggleShowTeam={this.toggleShowTeam.bind(this)} />
-        <h1>{err}</h1>
-        {this.state.showVisible && <Team team={team} selectPlayer={this.selectPlayer.bind(this)}  />}
-        <Player  />
+
+        {showVisible && <Team team={team} selectPlayerById={this.selectPlayerById.bind(this)}  />}
+
+        {showPlayer && <Player player={this.state.showPlayer} />}
       </div>
     )
   }

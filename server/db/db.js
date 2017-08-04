@@ -13,7 +13,7 @@ function getProfile (id, knex) {
     .join('bowling', 'bowling.user_id', '=', 'players.id')
     .select('*', 'bowling.average as bowling_average', 'batting.average as batting_average')
     .select('*', 'batting.runs as batting_runs', 'bowling.runs as bowling_runs')
-    .select('*', 'players.id as player_id')
+    .select('*', 'players.id as id')
 }
 
 function editProfile(id, data, knex) {
