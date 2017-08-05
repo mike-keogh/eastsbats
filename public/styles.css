@@ -3,5 +3,14 @@
   text-align: center;
   width: 80%;
   margin: 0 auto;
-  
+}
+
+.playerImage {
+  width: 300px;
+  height: auto;
+  border-radius: 400px;
+}
+
+li {
+  list-style-type: none;
 }

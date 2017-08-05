@@ -25,7 +25,6 @@ router.get('/team', function(req, res) {
   db.getPlayer(req.app.get('db'))
     .then(function(players) {
       res.json(players)
-      console.log(players);
     })
     .catch(function (err) {
       res.status(500).send('DATABASE ERROR: ' + err.message)

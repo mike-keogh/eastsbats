@@ -1,21 +1,21 @@
 import React from 'react'
-import {getTeam, getPlayerProfile} from '../api'
+import {getTeam} from '../api'
+import {Link, HashRouter as Router, Route} from 'react-router-dom'
 import Team from './Team'
 import Nav from './Nav'
 import Player from './Player'
+import PlayerStats from './PlayerStats'
 
 export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       err: null,
-      team: [],
-      showVisible: false,
-      showPlayer: null
+      team: []
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.refreshTeamData()
   }
 
@@ -27,29 +27,20 @@ export default class App extends React.Component {
     getTeam(this.saveTeam.bind(this))
   }
 
-  toggleShowTeam() {
-    this.setState(
-      {showVisible: !this.state.showVisible}
-    )
-  }
-
-  selectPlayerById(player) {
-    console.log(player)
-    // getPlayerProfile('id')
-    this.setState(
-      {showPlayer: player}
-    )
-  }
-
   render() {
     let {err, team, showPlayer, showVisible} = this.state
     return (
       <div>
-        <Nav toggleShowTeam={this.toggleShowTeam.bind(this)} />
-
-        {showVisible && <Team team={team} selectPlayerById={this.selectPlayerById.bind(this)}  />}
-
-        {showPlayer && <Player player={this.state.showPlayer} />}
+        <Router>
+          <div>
+            <Route path="/" component={Nav} />
+            <Route path="/team/" component=
+              {(props) => <Team team={team} />}
+            />
+            <Route path="/team/profile/:id" component={Player} />
+            <Route path="/team/profile/:id/stats" component={PlayerStats} />
+          </div>
+        </Router>
       </div>
     )
   }

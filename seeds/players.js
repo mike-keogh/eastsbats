@@ -11,7 +11,7 @@ exports.seed = function(knex, Promise) {
         nickname: 'fe fi fo',
         born: '5th March 1993, Wellington',
         age: '24',
-        teams: ' ECC Bats',
+        teams: ' ECC Bats, Caged Sharks, EGG',
         playing_role: 'Top order batsman, Wicket Keeper',
         image: 'images/Felix_Faisandier.jpg'
 
@@ -23,17 +23,18 @@ exports.seed = function(knex, Promise) {
         nickname: 'oz',
         born: '29th July 1991, Waikato',
         age: 26,
-        teams: 'ECC Bats',
-        playing_role: 'Middle order batsman, specialist feilder'
+        teams: 'ECC Bats, Silverdale Spitfires, Hillcrest Holts',
+        playing_role: 'Middle order batsman, Specialist feilder',
+        image: '/images/Jason_Foote.jpg'
       }, {
         id: 3,
         name: 'Jack Foster',
         batting_style: 'Right-hand bat',
         bowling_style: 'Right-arm medium',
         nickname: 'post-structuralism',
-        born: '26th August 1989, Wellington',
+        born: '26th August 1989, Christchurch',
         age: 27,
-        teams: 'ECC Sharks, ECC Bats',
+        teams: 'ECC Sharks, ECC Bats, Wellington College 27th XI',
         playing_role: 'First change / opening bowler'
       }, {
         id: 4,
@@ -63,6 +64,7 @@ exports.seed = function(knex, Promise) {
         nickname: 'honey badger',
         born: '27th August 1989, Wellington',
         age: 27,
+        teams: 'Wellington College 7th XI, ECC Bats, Black Caps',
         playing_role: 'Opening batsman'
       }, {
         id: 7,
@@ -72,7 +74,7 @@ exports.seed = function(knex, Promise) {
         nickname: 'kony',
         born: '6th December 1989, Lower Hutt',
         age: 27,
-        teams: 'ECC Sharks, ECC Bats',
+        teams: 'ECC Sharks, ECC Bats, Caged Sharks, Naenae Cricket Club XI (All timers)',
         playing_role: 'Opening batsman'
       }, {
         id: 8,
@@ -87,16 +89,19 @@ exports.seed = function(knex, Promise) {
         batting_style: 'Right-hand bat',
         bowling_style: 'Right-arm medium',
         nickname: 'frosty',
-        playing_role: 'Middle order batsman'
+        playing_role: 'Middle order batsman',
+        born: '8th November 1989, Lower Hutt',
+        age: 27,
+        teams: 'HIBS 10b, HIBS 3rd XI, EGG, Caged Sharks, ECC Sharks, ECC Bats, Naenae Cricket Club (All timers)'
       }, {
         id: 10,
         name: 'Rhys Stannard',
         batting_style: 'Right-hand bat',
         bowling_style: 'Right arm fast',
         nickname: 'cap, moggy, ol nine lives',
-        born: '5th December 1991, ???',
+        born: '5th December 1991, Takapuna',
         age: 25,
-        teams: 'ECC Sharks, ECC Bats',
+        teams: 'ECC Sharks, ECC Bats, Wellington College 3rd XI, Kuwait English School 1st XI, Kuwait Oil Company XI, Caged Sharks',
         playing_role: 'Captain, All rounder'
       }, {
         id: 11,
@@ -106,7 +111,7 @@ exports.seed = function(knex, Promise) {
         nickname: 'mf zazu',
         born: '1st January 1992, Tokoroa',
         age: 25,
-        teams: 'ECC Sharks, ECC Bats',
+        teams: 'ECC Sharks, ECC Bats, Saint Johns College 5th & 3rd XI',
         playing_role: 'Opening bowler'
       }
     ]);
