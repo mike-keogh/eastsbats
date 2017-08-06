@@ -31,10 +31,9 @@ export default class Player extends React.Component {
 
   render() {
     const {player} = this.state
-
     return player
       ? (
-        <div>
+        <div className="playerDetails">
           <ul>
             <li>Name: {player.name}</li>
             <li>Born: {player.born}</li>
@@ -43,9 +42,11 @@ export default class Player extends React.Component {
             <li>Playing Role: {player.playing_role}</li>
             <li>Batting Style: {player.batting_style}</li>
             <li>Bowling Style: {player.bowling_style}</li>
-            <li><img className='playerImage' src={player.image} /></li>
           </ul>
-          <Link to={'/team/profile/' + player.id + '/stats'} component={PlayerStats}>Batting Statistics</Link>
+          <div>
+          <img className='playerImage' src={player.image} />
+          </div>
+          <Link to={'/team/profile/' + player.id + '/stats'} component={PlayerStats} >{player.name}'s Statistics</Link>
         </div>
       )
     : <div>Who?</div>

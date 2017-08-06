@@ -5,8 +5,9 @@ export default class Nav extends React.Component {
   render() {
     return (
       <div className='navBar'>
-        <h3><Link to="/">Home</Link></h3>
-        <h3><Link to="/team">Team</Link></h3>
+        <div className='homeNave'><Link to="/">Home</Link></div>
+        <div className='teamNav'><Link to="/team">Team</Link></div>
+        <div className='imagesNav'><Link to="/images">Images</Link></div>
       </div>
     )
   }

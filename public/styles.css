@@ -1,14 +1,44 @@
-.navBar {
+.container {
   border: 1px solid black;
+  display: inline;
+
+}
+
+.navBar {
+  border-bottom: : 1px solid black;
   text-align: center;
   width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.team {
+  border: 1px solid black;
+  max-width: 25%;
+  display: flex-wrap;
+  float: left;
+}
+
+.playerDetails img {
+  border: 1px solid black;
+  display: flex;
+  max-width: 50%;
+
+}
+
+.playerStats {
+  border: 1px solid black;
+}
+
+.teamImages img {
+  max-width: 60%;
   margin: 0 auto;
 }
 
 .playerImage {
   width: 300px;
   height: auto;
-  border-radius: 400px;
 }
 
 li {

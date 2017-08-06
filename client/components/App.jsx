@@ -1,10 +1,12 @@
 import React from 'react'
-import {getTeam} from '../api'
 import {Link, HashRouter as Router, Route} from 'react-router-dom'
+
+import {getTeam} from '../api'
 import Team from './Team'
 import Nav from './Nav'
 import Player from './Player'
 import PlayerStats from './PlayerStats'
+import Images from './Images'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -28,12 +30,13 @@ export default class App extends React.Component {
   }
 
   render() {
-    let {err, team, showPlayer, showVisible} = this.state
+    let {err, team} = this.state
     return (
-      <div>
+      <div className="container">
         <Router>
           <div>
             <Route path="/" component={Nav} />
+            <Route path="/images" component={Images} />
             <Route path="/team/" component=
               {(props) => <Team team={team} />}
             />
