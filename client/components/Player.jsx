@@ -9,30 +9,42 @@ export default class Player extends React.Component {
     super(props)
     this.state = {
       err: null,
-      player: null
+      player: null,
+      showVisible: false
     }
   }
 
   componentWillMount() {
-    this.refreshPlayerData()
+    this.refreshPlayerData(this.props.match.params.id)
   }
 
-  componentWillUpdate() {
-    this.refreshPlayerData()
+  componentWillReceiveProps(props) {
+    console.log(props)
+    this.refreshPlayerData(props.match.params.id)
+    this.setState({showVisible: false})
   }
 
   savePlayer(err, player) {
-    this.setState({err, player: player})
+    this.setState({err, player: player.player})
   }
 
-  refreshPlayerData() {
-    getPlayerProfile(this.props.match.params.id, this.savePlayer.bind(this))
+  refreshPlayerData(id) {
+
+    getPlayerProfile(id, this.savePlayer.bind(this))
+  }
+
+  toggleSelected() {
+    this.setState(
+      { showVisible: !this.state.showVisible }
+    )
   }
 
   render() {
     const {player} = this.state
     return player
       ? (
+        <div>
+
         <div className="playerDetails">
           <ul>
             <li>Name: {player.name}</li>
@@ -43,10 +55,14 @@ export default class Player extends React.Component {
             <li>Batting Style: {player.batting_style}</li>
             <li>Bowling Style: {player.bowling_style}</li>
           </ul>
-          <div>
-          <img className='playerImage' src={player.image} />
-          </div>
-          <Link to={'/team/profile/' + player.id + '/stats'} component={PlayerStats} >{player.name}'s Statistics</Link>
+
+            <img src={player.image} />
+
+        </div>
+
+        <button onClick={e => this.toggleSelected()}>Show Stats</button>
+
+        {this.state.showVisible && <PlayerStats player={player}/>}
         </div>
       )
     : <div>Who?</div>

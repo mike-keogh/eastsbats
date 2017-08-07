@@ -6,8 +6,15 @@ var db = require('../db/db')
 router.get('/team/profile/:id', function(req, res) {
   db.getProfile(req.params.id, req.app.get('db'))
   .then(function(player) {
-    res.json(player[0])
-  }).catch(function (err) {
+    db.getPlayerBowling(req.params.id, req.app.get('db'))
+      .then(function(bowling) {
+        db.getPlayerBatting(req.params.id, req.app.get('db'))
+          .then(function(batting) {
+            res.json({player, bowling, batting})
+          })
+      })
+  })
+  .catch(function (err) {
     res.status(500).send('DATABASE ERROR: ' + err.message)
   })
 })

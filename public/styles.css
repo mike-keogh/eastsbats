@@ -1,3 +1,5 @@
+
+
 .container {
   border: 1px solid black;
   display: inline;
@@ -5,26 +7,35 @@
 }
 
 .navBar {
-  border-bottom: : 1px solid black;
+  border: 1px solid black;
   text-align: center;
-  width: 80%;
+  width: 40%;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .team {
   border: 1px solid black;
   max-width: 25%;
-  display: flex-wrap;
+  display: inline;
+
   float: left;
+  border: 1px solid black;
 }
 
 .playerDetails img {
   border: 1px solid black;
   display: flex;
+  flex-wrap: wrap;
   max-width: 50%;
-
+  border: 1px solid black;
+  width: 300px;
+  height: auto;
+  float: right;
 }
 
 .playerStats {
@@ -36,10 +47,6 @@
   margin: 0 auto;
 }
 
-.playerImage {
-  width: 300px;
-  height: auto;
-}
 
 li {
   list-style-type: none;

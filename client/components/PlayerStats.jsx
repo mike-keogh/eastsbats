@@ -6,38 +6,60 @@ export default class PlayerStats extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      showVisible: false,
-      player: null
+      player: null,
+      batting: null,
+      bowling: null
     }
   }
 
     componentWillMount() {
       this.refreshPlayerData()
     }
+    // componentWillUpdate() {
+    //   this.refreshPlayerData()
+    // }
 
-    componentWillUpdate() {
-      this.refreshPlayerData()
-    }
-
-    savePlayer(err, player) {
-      this.setState({err, player: player})
+    savePlayer(err, {player, batting, bowling}) {
+      console.log({err, player});
+      this.setState({err, player, batting, bowling})
     }
 
     refreshPlayerData() {
-      getPlayerProfile(this.props.match.params.id, this.savePlayer.bind(this))
+      getPlayerProfile(this.props.player.id, this.savePlayer.bind(this))
     }
 
   render() {
-    const {player} = this.state
-    console.log('player', player);
+    const {player, batting, bowling} = this.state
+    console.log('player', bowling);
 
     return player
       ?  (
         <div className='playerStats'>
-          <h1>Hello</h1>
+          <div className='battingStats'>
+          <h4>Batting Statistics:</h4>
             <ul>
-              <li>{player.batting_runs}</li>
+              <li>Innings: {batting.innings}</li>
+              <li>Runs: {batting.runs}</li>
+              <li>Average: {batting.average}</li>
+              <li>Not Out: {batting.no}</li>
             </ul>
+          </div>
+
+            {bowling ?
+              <div className="bowlingStats">
+                <h4>Bowling Statistics</h4>
+                <ul>
+                  <li>Overs: {bowling.overs}</li>
+                  <li>Maidens: {bowling.maidens}</li>
+                  <li>Runs: {bowling.runs}</li>
+                  <li>Wickets: {bowling.wickets}</li>
+                  <li>Average: {bowling.average}</li>
+                </ul>
+              </div>
+
+            : <h3>This player has no bowling stats</h3>
+
+            }
         </div>
     )
       : <div>Who?</div>
