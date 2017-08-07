@@ -7,6 +7,7 @@
   "scripts": {
     "start": "node server/index.js",
     "dev": "nodemon --watch server server/index & webpack --watch",
+    "knex": "knex",
     "test": "tape -r babel-register 'test/**/*.test.js' | tap-diff",
     "watch": "nodemon -e js,jsx -x npm test",
     "migrate": "knex migrate:latest",
@@ -33,6 +34,7 @@
     "react": "^15.4.2",
     "react-addons-test-utils": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-router-dom": "^4.1.2",
     "tap-diff": "^0.1.1",
     "tape": "^4.6.3",
     "webpack": "^2.3.3",

@@ -1,14 +1,13 @@
 import React from 'react'
-import TeamPlayer from './TeamPlayer'
+import {Link} from 'react-router-dom'
 
 export default function Team ({team}) {
-  const renderTeamItem = (player, key) => (
-    <TeamPlayer player={player} key={key} />
-  )
+  const renderTeamItem = (player, key) => (<Link to={'/team/profile/' + player.id}  key={key}><h4>{player.name}</h4></Link>)
+  const renderTeam = () => team.map(renderTeamItem)
 
   return (
     <div className="team">
-      {team.map(renderTeamItem)}
+      {renderTeam(team)}
     </div>
   )
 }

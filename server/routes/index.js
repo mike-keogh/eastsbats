@@ -6,28 +6,27 @@ var db = require('../db/db')
 router.get('/team/profile/:id', function(req, res) {
   db.getProfile(req.params.id, req.app.get('db'))
   .then(function(player) {
-    res.json(player[0])
-    console.log(player);
-  }).catch(function (err) {
+    db.getPlayerBowling(req.params.id, req.app.get('db'))
+      .then(function(bowling) {
+        db.getPlayerBatting(req.params.id, req.app.get('db'))
+          .then(function(batting) {
+            res.json({player, bowling, batting})
+          })
+      })
+  })
+  .catch(function (err) {
     res.status(500).send('DATABASE ERROR: ' + err.message)
   })
 })
 
-
-router.post('/team/profile/:id', function(req, res) {
-  var id = req.params.id
-  db.editProfile(id, req.body, req.app.get('db'))
-    .then(function(player) {
-      res.redirect('/team/profile/' + id)
-    })
-})
-
-router.get('/index', function(req, res) {
-  db.getPlayer(req.app.get('db'))
-    .then(function(player) {
-      res.render('index', { players: player} )
-    })
-})
+// router.post('/team/profile/:id', function(req, res) {
+//   var id = req.params.id
+//   var body = req.body
+//   db.editProfile(id, body, req.app.get('db'))
+//     .then(function(player) {
+//       res.redirect('/team/profile/' + id)
+//     })
+// })
 
 router.get('/team', function(req, res) {
   db.getPlayer(req.app.get('db'))
@@ -38,10 +37,5 @@ router.get('/team', function(req, res) {
       res.status(500).send('DATABASE ERROR: ' + err.message)
     })
 })
-
-router.get('/', function (req, res) {
-  res.json(['hello', 'hi'])
-})
-
 
 module.exports = router
