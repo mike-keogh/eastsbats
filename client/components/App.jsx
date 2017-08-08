@@ -7,6 +7,8 @@ import Nav from './Nav'
 import Player from './Player'
 import PlayerStats from './PlayerStats'
 import Images from './Images'
+import Home from './Home'
+import Report from './Report'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -33,10 +35,13 @@ export default class App extends React.Component {
     let {err, team} = this.state
     return (
       <div className="container">
+        <h1>The Bats</h1>
         <Router>
           <div>
             <Route path="/" component={Nav} />
+            <Route exact path="/" component={Home} />
             <Route path="/images" component={Images} />
+            <Route path="/report" component={Report} />
             <Route path="/team/" component=
               {(props) => <Team team={team} />}
             />

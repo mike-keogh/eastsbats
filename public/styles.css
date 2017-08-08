@@ -3,9 +3,11 @@
 .container {
   border: 1px solid black;
   display: inline;
-
 }
 
+.container h1 {
+  text-align: center;
+}
 .navBar {
   border: 1px solid black;
   text-align: center;
