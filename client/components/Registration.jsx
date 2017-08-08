@@ -4,7 +4,7 @@ export default class Registration extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      newPlayer = []
+      newPlayer: []
     }
   }
 
@@ -12,7 +12,7 @@ export default class Registration extends React.Component {
     return (
       <div className="addNewPlayer">
         <form name="newPlayer" >
-          
+
         </form>
       </div>
     )
