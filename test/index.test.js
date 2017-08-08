@@ -1,12 +1,20 @@
 import test from 'tape'
 import React from 'react'
-import { shallow } from 'enzyme'
+import { shallow, mount, render } from 'enzyme'
+import jsdom from 'jsdom'
 
 import App from '../client/components/App'
+import Team from '../client/components/Team'
+import PlayerStats from '../client/components/PlayerStats'
 
 test('<App />', t => {
-  const expected = 'React development has begun!'
+  const expected = 'The Bats'
   const wrapper = shallow(<App />)
-  t.equal(wrapper.text(), expected)
+  t.equal(wrapper.find('h1').text(), expected)
   t.end()
+})
+
+test.only('<PlayingStats />', t => {
+  const wrapper = mount(<PlayerStats />)
+  t.is(wrapper.find('.bowlingStats').exists(), true)
 })

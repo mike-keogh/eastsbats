@@ -5,7 +5,7 @@ export default function Images (props) {
     <div className='teamImages'>
       <img src='/images/chanelling_trent_boult.jpg' />
       <img src='/images/post_match_banter.jpg' />
-      <img src='/images/post_match_byc.jpg' />
+      <img src='/images/post-match_byc.jpg' />
       <img src='/images/technical_application_par_excellence.jpg' />
       <img src='/images/waiting_for_an_edge.jpg' />
     </div>
