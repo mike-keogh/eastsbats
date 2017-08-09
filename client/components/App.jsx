@@ -9,6 +9,7 @@ import PlayerStats from './PlayerStats'
 import Images from './Images'
 import Home from './Home'
 import Report from './Report'
+import Registration from './Registration'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -42,6 +43,7 @@ export default class App extends React.Component {
             <Route exact path="/" component={Home} />
             <Route path="/images" component={Images} />
             <Route path="/report" component={Report} />
+            <Route path="/registration" component={Registration} />
             <Route path="/team/" component=
               {(props) => <Team team={team} />}
             />
