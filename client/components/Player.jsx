@@ -58,9 +58,9 @@ export default class Player extends React.Component {
 
             <img src={player.image} />
 
-        </div>
 
-        <button onClick={e => this.toggleSelected()}>Show Stats</button>
+        <button className='playerButton' onClick={e => this.toggleSelected()}>Show Stats</button>
+      </div>
 
         {this.state.showVisible && <PlayerStats player={player}/>}
         </div>
