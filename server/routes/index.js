@@ -19,6 +19,15 @@ router.get('/team/profile/:id', function(req, res) {
   })
 })
 
+router.post('/registration', (err, res) => {
+  const body = req.body
+  console.log("player", body);
+  db.createNewPlayer(body, req.app.get('db'))
+    .then((newPlayer) => {
+      res.json(newPlayer)
+    })
+})
+
 // router.post('/team/profile/:id', function(req, res) {
 //   var id = req.params.id
 //   var body = req.body

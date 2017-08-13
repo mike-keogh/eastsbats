@@ -6,6 +6,10 @@ function getPlayer (knex) {
   return knex('players').select()
 }
 
+function createNewPlayer (body, knex) {
+  return knex('players').insert(body)
+}
+
 // function getProfile (id, knex) {
 //   return knex('players')
 //     .where('players.id', id)
@@ -41,9 +45,10 @@ function editProfile(id, data, knex) {
 }
 
 module.exports = {
-  getPlayer: getPlayer,
-  getProfile: getProfile,
+  getPlayer,
+  getProfile,
   getPlayerBowling,
   getPlayerBatting,
-  editProfile: editProfile
+  editProfile,
+  createNewPlayer
 }
