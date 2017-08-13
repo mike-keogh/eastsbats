@@ -18,6 +18,7 @@ export default class Registration extends React.Component {
 
   submitPlayer (e) {
     e.preventDefault()
+    
   }
 
   render() {
