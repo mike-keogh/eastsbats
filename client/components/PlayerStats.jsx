@@ -36,7 +36,7 @@ export default class PlayerStats extends React.Component {
       ?  (
         <div className='playerStats'>
           <div className='battingStats'>
-          <h4>Batting Statistics:</h4>
+          <h3>Batting Statistics:</h3>
             <ul>
               <li>Innings: {batting.innings}</li>
               <li>Runs: {batting.runs}</li>
@@ -47,7 +47,7 @@ export default class PlayerStats extends React.Component {
 
             {bowling ?
               <div className="bowlingStats">
-                <h4>Bowling Statistics</h4>
+                <h4 className="battingStats">Bowling Statistics</h4>
                 <ul>
                   <li>Overs: {bowling.overs}</li>
                   <li>Maidens: {bowling.maidens}</li>
@@ -57,7 +57,7 @@ export default class PlayerStats extends React.Component {
                 </ul>
               </div>
 
-            : <h3>This player has no bowling stats</h3>
+            : <p>This player has no bowling stats</p>
 
             }
         </div>

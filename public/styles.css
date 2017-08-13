@@ -1,3 +1,8 @@
+* {
+  font-family: helvetica;
+  line-height: 1.5;
+}
+
 .container {
   display: inline;
 }
@@ -7,7 +12,7 @@
 }
 .navBar {
   text-align: center;
-  width: 40%;
+  width: 50%;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
@@ -32,11 +37,12 @@
   width: 300px;
   height: auto;
   float: right;
-  margin-right: 20%;
+  margin-left: 20%;
 }
 .playerDetails {
   width: 80%;
   margin-left: 20%;
+  font-weight: lighter;
 }
 
 .playerButton {
@@ -44,12 +50,33 @@
 }
 
 .playerStats {
-  margin-left: 20%;
+  margin-left: 30%;
+  font-weight: lighter;
 }
 
+.battingStats {
+  text-align: left;  
+}
+
+.matchReport {
+  padding: 20px;
+}
 .teamImages img {
   max-width: 60%;
   margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+h3 {
+  text-align: center;
+}
+
+p {
+  text-align: center;
+  font-weight: lighter;
 }
 
 li {
