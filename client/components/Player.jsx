@@ -29,7 +29,6 @@ export default class Player extends React.Component {
   }
 
   refreshPlayerData(id) {
-
     getPlayerProfile(id, this.savePlayer.bind(this))
   }
 
@@ -57,7 +56,6 @@ export default class Player extends React.Component {
           </ul>
 
             <img src={player.image} />
-
 
         <button className='playerButton' onClick={e => this.toggleSelected()}>Show Stats</button>
       </div>
