@@ -18,7 +18,7 @@ export default class Registration extends React.Component {
 
   submitPlayer (e) {
     e.preventDefault()
-    
+    // post to the database
   }
 
   render() {
