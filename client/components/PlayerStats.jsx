@@ -20,7 +20,6 @@ export default class PlayerStats extends React.Component {
     // }
 
     savePlayer(err, {player, batting, bowling}) {
-      console.log({err, player});
       this.setState({err, player, batting, bowling})
     }
 
@@ -30,8 +29,6 @@ export default class PlayerStats extends React.Component {
 
   render() {
     const {player, batting, bowling} = this.state
-    console.log('player', bowling);
-
     return player
       ?  (
         <div className='playerStats'>

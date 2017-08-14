@@ -1,7 +1,6 @@
 import request from 'superagent'
 
 export const receiveTeam = (team) => {
-  console.log('team', team);
   return {
     type: 'RECEIVE_TEAM',
     team

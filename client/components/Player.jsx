@@ -19,7 +19,6 @@ export default class Player extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    console.log(props)
     this.refreshPlayerData(props.match.params.id)
     this.setState({showVisible: false})
   }
@@ -55,10 +54,10 @@ export default class Player extends React.Component {
             <li>Bowling Style: {player.bowling_style}</li>
           </ul>
 
-            <img src={player.image} />
+          <img src={player.image} />
 
-        <button className='playerButton' onClick={e => this.toggleSelected()}>Show Stats</button>
-      </div>
+          <button className='playerButton' onClick={e => this.toggleSelected()}>Show Stats</button>
+        </div>
 
         {this.state.showVisible && <PlayerStats player={player}/>}
         </div>

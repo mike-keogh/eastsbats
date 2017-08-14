@@ -19,12 +19,12 @@ router.get('/team/profile/:id', function(req, res) {
   })
 })
 
-router.post('/registration', (err, res) => {
+router.post('/team', (req, res) => {
   const body = req.body
-  console.log("player", body);
+  console.log(body)
   db.createNewPlayer(body, req.app.get('db'))
     .then((newPlayer) => {
-      res.json(newPlayer)
+      res.status(201).json(newPlayer)
     })
 })
 

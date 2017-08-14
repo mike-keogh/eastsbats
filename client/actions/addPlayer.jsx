@@ -1,21 +1,22 @@
 import request from 'superagent'
 
-export const addPlayerAction = (player) => {
+export const addPlayerAction = (newPlayer) => {
   return {
     type: 'ADD_PLAYER',
-    player
+    newPlayer
   }
 }
 
-export function addPlayerRequest () {
+export function addPlayerRequest (newPlayer) {
   return (dispatch) => {
-    .post('/v1/team')
-    .end((err, res) => {
-      if(err) {
-        console.error(err.message)
-        return
-      }
-      dispatch(addPlayerAction(res.body))
-    })
+    request
+      .post('/v1/team')
+      .end((err, res) => {
+        if(err) {
+          console.error(err.message)
+          return
+        }
+        dispatch(addPlayerAction(res.body))
+      })
   }
 }

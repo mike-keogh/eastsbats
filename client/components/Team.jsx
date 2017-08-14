@@ -10,7 +10,7 @@ class Team extends React.Component {
     this.props.dispatch(getTeam())
   }
   render() {
-     const { team } = this.props
+    const { team } = this.props
     const renderTeamItem = (player, key) => (<Link to={'/team/profile/' + player.id}  key={key}><h4>{player.name}</h4></Link>)
     const renderTeam = () => team.map(renderTeamItem)
     return (

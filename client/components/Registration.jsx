@@ -1,6 +1,10 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-export default class Registration extends React.Component {
+import { addPlayerRequest } from '../actions/addPlayer'
+import { insertNewPlayer } from '../api'
+
+class Registration extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -18,8 +22,16 @@ export default class Registration extends React.Component {
 
   submitPlayer (e) {
     e.preventDefault()
-    // post to the database
+    const { newPlayer } = this.state
+    console.log('new player', newPlayer);
+    this.props.dispatch(addPlayerRequest(JSON.stringify(newPlayer)))
   }
+
+  // addPlayer (e) {
+  //   e.preventDefault()
+  //   const { newPlayer } = this.state
+  //   insertNewPlayer(newPlayer, this.submitPlayer.bind(this))
+  // }
 
   render() {
     return (
@@ -41,3 +53,5 @@ export default class Registration extends React.Component {
     )
   }
 }
+
+export default connect()(Registration)
