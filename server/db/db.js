@@ -4,9 +4,7 @@ function getPlayer (knex) {
 
 function createNewPlayer (body, knex) {
   return knex('players')
-    .select()
     .insert(body)
-    .first()
 }
 
 function getProfile(id, knex) {
