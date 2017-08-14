@@ -1,7 +1,7 @@
 import React from 'react'
-import {Link, HashRouter as Router, Route} from 'react-router-dom'
+import { Link, HashRouter as Router, Route } from 'react-router-dom'
 
-import {getTeam} from '../api'
+import { getTeam } from '../api'
 import Team from './Team'
 import Nav from './Nav'
 import Player from './Player'

@@ -11,12 +11,14 @@ export function addPlayerRequest (newPlayer) {
   return (dispatch) => {
     request
       .post('/v1/team')
+      .send(newPlayer)
       .end((err, res) => {
         if(err) {
           console.error(err.message)
           return
         }
         dispatch(addPlayerAction(res.body))
+        console.log('action', res.body);
       })
   }
 }

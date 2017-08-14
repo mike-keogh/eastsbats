@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import { addPlayerRequest } from '../actions/addPlayer'
-import { insertNewPlayer } from '../api'
 
 class Registration extends React.Component {
   constructor(props) {
@@ -11,7 +10,6 @@ class Registration extends React.Component {
       newPlayer: {}
     }
   }
-
   newPlayerDetails (e) {
     const newPlayer = this.state.newPlayer
     this.setState({
@@ -21,17 +19,12 @@ class Registration extends React.Component {
   }
 
   submitPlayer (e) {
+    console.log('e', e);
     e.preventDefault()
     const { newPlayer } = this.state
     console.log('new player', newPlayer);
-    this.props.dispatch(addPlayerRequest(JSON.stringify(newPlayer)))
+    this.props.dispatch(addPlayerRequest(newPlayer))
   }
-
-  // addPlayer (e) {
-  //   e.preventDefault()
-  //   const { newPlayer } = this.state
-  //   insertNewPlayer(newPlayer, this.submitPlayer.bind(this))
-  // }
 
   render() {
     return (
