@@ -9,11 +9,15 @@
     "start": "node server/index.js",
     "dev": "nodemon --watch server server/index & webpack --watch",
     "knex": "knex",
-    "test": "tape -r babel-register 'test/**/*.test.js' | tap-diff",
+    "test": "ava  -v  --serial 'test/**/*.test.js'",
     "watch": "nodemon -e js,jsx -x npm test",
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback",
     "seed": "knex seed:run"
+  },
+  "ava": {
+    "require": "babel-register",
+    "babel": "inherit"
   },
   "babel": {
     "presets": [
@@ -24,6 +28,7 @@
   "author": "EDA",
   "license": "ISC",
   "devDependencies": {
+    "ava": "^0.21.0",
     "enzyme": "^2.7.0",
     "nodemon": "^1.11.0",
     "tap-diff": "^0.1.1",

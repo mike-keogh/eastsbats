@@ -25,6 +25,14 @@ module.exports = {
       tableName: 'knex_migrations'
     }
   },
+  
+  test: {
+       client: 'sqlite3',
+       connection: {
+         filename: ':memory:'
+       },
+       useNullAsDefault: true
+     },
 
   production: {
     client: 'postgresql',
