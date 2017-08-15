@@ -9,6 +9,7 @@ export default class Nav extends React.Component {
         <div className='teamNav'><Link to="/team" replace>Team</Link></div>
         <div className='reportNav'><Link to="/report" replace>Season Report</Link></div>
         <div className='newPlayerNav'><Link to="/registration" replace>Registration</Link></div>
+        <div className='newGameNav'><Link to="/newGame" replace>New Game</Link></div>
         <div className='imagesNav'><Link to="/images" replace>Images</Link></div>
       </div>
     )

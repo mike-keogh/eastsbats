@@ -21,7 +21,8 @@ class Team extends React.Component {
   }
 }
 
-function mapStateToProps ({ team }) {
+function mapStateToProps ({ team }, props) {
+  if (props.team) {team = props.team}
   return { team }
 }
 

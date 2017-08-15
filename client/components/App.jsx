@@ -10,6 +10,7 @@ import Images from './Images'
 import Home from './Home'
 import Report from './Report'
 import Registration from './Registration'
+import NewGame from './NewGame'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -49,6 +50,7 @@ export default class App extends React.Component {
             />
             <Route path="/team/profile/:id" component={Player} />
             <Route path="/team/profile/:id/stats" component={PlayerStats} />
+            <Route path="/newGame" component={NewGame}/>
           </div>
         </Router>
       </div>
