@@ -1,6 +1,6 @@
 import React from 'react'
 
-import {getPlayerProfile} from '../api'
+import { getPlayerProfile } from '../api'
 
 export default class PlayerStats extends React.Component {
   constructor(props) {
@@ -15,11 +15,9 @@ export default class PlayerStats extends React.Component {
     componentWillMount() {
       this.refreshPlayerData()
     }
-    // componentWillUpdate() {
-    //   this.refreshPlayerData()
-    // }
 
     savePlayer(err, {player, batting, bowling}) {
+      if (err) console.log(err);
       this.setState({err, player, batting, bowling})
     }
 
@@ -32,15 +30,18 @@ export default class PlayerStats extends React.Component {
     return player
       ?  (
         <div className='playerStats'>
-          <div className='battingStats'>
-          <h3>Batting Statistics:</h3>
-            <ul>
-              <li>Innings: {batting.innings}</li>
-              <li>Runs: {batting.runs}</li>
-              <li>Average: {batting.average}</li>
-              <li>Not Out: {batting.no}</li>
-            </ul>
-          </div>
+          {batting ?
+            <div className='battingStats'>
+              <h3>Batting Statistics:</h3>
+              <ul>
+                <li>Innings: {batting.innings}</li>
+                <li>Runs: {batting.runs}</li>
+                <li>Average: {batting.average}</li>
+                <li>Not Out: {batting.no}</li>
+              </ul>
+            </div>
+          : <p>This player has no Batting stats</p>
+          }
 
             {bowling ?
               <div className="bowlingStats">

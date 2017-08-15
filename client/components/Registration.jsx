@@ -36,7 +36,7 @@ class Registration extends React.Component {
         <input name="teams" placeholder="Major Teams" type="text" onChange={this.newPlayerDetails.bind(this)}/><br/>
         <input name="playing_role" placeholder="Playing Role" type="text" onChange={this.newPlayerDetails.bind(this)}/><br/>
         <select name="batting_style" onChange={this.newPlayerDetails.bind(this)}>
-          <option selected disabled>Batting Style</option>
+          <option default value>Batting Style</option>
           <option>Right-hand Bat</option>
           <option>Left-hand Bat</option>
         </select><br/>

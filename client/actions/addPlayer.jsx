@@ -18,7 +18,6 @@ export function addPlayerRequest (newPlayer) {
           return
         }
         dispatch(addPlayerAction(res.body))
-        console.log('action', res.body);
       })
   }
 }

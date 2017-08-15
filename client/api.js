@@ -34,14 +34,3 @@ export function getPlayerProfile(id, callback) {
       }
     })
 }
-
-// export function insertNewPlayer(newPlayer, callback) {
-//   request
-//     .post('/v1/team')
-//     .end((err, res) => {
-//       if(err) callback(err)
-//         else {
-//           callback(null, res.body)
-//         }
-//     })
-// }

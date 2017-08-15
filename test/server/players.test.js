@@ -18,16 +18,17 @@ test.cb('GET /v1/team', t => {
     })
 })
 
-test.cb('GET /v1/team name', t => {
+test.cb('GET /v1/team, player name and image', t => {
   request(t.context.app)
     .get('/v1/team')
     .end((err, res) => {
       t.is('Felix Faisandier', res.body[0].name)
+      t.regex(res.body[0].image, /Felix_Faisandier\.jpg/)
       t.end()
     })
 })
 
-test.cb.only('POST /v1/team', t => {
+test.cb('POST /v1/team inserts new object to db, and returns 201', t => {
   request(t.context.app)
     .post('/v1/team')
     .send({name: 'ted'})

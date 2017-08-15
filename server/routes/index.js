@@ -24,7 +24,6 @@ router.post('/team', (req, res) => {
   db.createNewPlayer(body, req.app.get('db'))
     .then((newPlayer) => {
       res.status(201).json(newPlayer)
-      console.log('req.body', body)
     })
 })
 
