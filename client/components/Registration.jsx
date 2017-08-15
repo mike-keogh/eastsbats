@@ -19,10 +19,8 @@ class Registration extends React.Component {
   }
 
   submitPlayer (e) {
-    console.log('e', e);
     e.preventDefault()
     const { newPlayer } = this.state
-    console.log('new player', newPlayer);
     this.props.dispatch(addPlayerRequest(newPlayer))
   }
 
