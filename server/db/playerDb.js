@@ -5,7 +5,7 @@ function getPlayer (knex) {
 function createNewPlayer (body, knex) {
   return knex('players')
     .insert(body)
-    .then(id => getProfile(id[0], knex))
+      .then(id => getProfile(id[0], knex))
 }
 
 function getProfile(id, knex) {
@@ -33,7 +33,6 @@ function editProfile(id, data, knex) {
 }
 
 function deletePlayer (id, knex) {
-  console.log({id});
   return knex('players')
     .where('players.id', id)
     .del()

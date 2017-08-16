@@ -2,7 +2,7 @@ var test = require('ava')
 var request = require('supertest')
 
 var createServer = require('../../server/server')
-var db = require('../../server/db/db')
+var db = require('../../server/db/playerDb')
 
 var setupDb = require('./setup-db')
 setupDb(test, createServer)
@@ -43,30 +43,7 @@ test.cb('POST /v1/team inserts new object to db, and returns 201', t => {
     })
 })
 
-test.cb('GET /v1/games contains an object', t => {
-  request(t.context.app)
-    .get('/v1/games')
-    .expect(200)
-    .end((err, res) => {
-      t.is(res.body.length >= 0, true)
-      t.end()
-    })
-})
 
-test.cb('POST /v1/games, db receives an object', t => {
-  request(t.context.app)
-    .post('/v1/games')
-    .send({location: 'Wellington'})
-    .expect(201)
-    .end((err, res) => {
-      t.context.db('game')
-      .then((data) => {
-        t.is(data.length, 1)
-        t.is(res.body.location, 'Wellington')
-      })
-      t.end()
-    })
-})
 
 test.cb('DEL /v1/team/profile/:id', t => {
   request(t.context.app)
@@ -75,7 +52,8 @@ test.cb('DEL /v1/team/profile/:id', t => {
     .end((err, res) => {
       t.context.db('players')
       .then((data) => {
-        t.is(data.length, )
+        t.is(data.length, 10 )
       })
+      t.end()
     })
 })
