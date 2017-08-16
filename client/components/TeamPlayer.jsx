@@ -1,24 +1,33 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import {connect, dispatch} from 'react-redux'
 import {Link} from 'react-router-dom'
+
+import { deletePlayerRequest } from '../actions/deletePlayer'
 
 class TeamPlayer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      hover: false
+      hover: false,
+      player: props.player
     }
   }
-  hoverOn() {
+
+  componentWillReceiveProps ({player}) {
+    this.setState({
+      player: player
+    })
+  }
+
+  hoverOn () {
     this.setState({hover: true})
   }
-  hoverOff() {
+  hoverOff () {
     setTimeout(() => this.setState({hover:false}), 500)
-
   }
+
   render() {
     let {player} = this.props
-    console.log({player});
     return (
       <div
         onMouseEnter={this.hoverOn.bind(this)}
@@ -31,7 +40,7 @@ class TeamPlayer extends React.Component {
         </h4>
         {this.state.hover && <div>
           <h6>{player.nickname}</h6>
-          <a style={{cursor: 'no-drop'}}> ✗</a>
+          <a style={{cursor: 'no-drop'}} onClick={() => this.props.dispatch(deletePlayerRequest(player))}> ✗</a>
 
         </div>
         }
@@ -40,4 +49,10 @@ class TeamPlayer extends React.Component {
   }
 }
 
-export default connect()(TeamPlayer)
+const mapStateToProps = (props, state) => {
+  return {
+    player: state.player
+  }
+}
+
+export default connect(mapStateToProps)(TeamPlayer)

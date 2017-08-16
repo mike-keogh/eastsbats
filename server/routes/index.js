@@ -19,6 +19,12 @@ router.get('/team/profile/:id', function(req, res) {
   })
 })
 
+router.delete('/team/profile/:id', (req, res) => {
+  db.deletePlayer(req.params.id, req.app.get('db'))
+    .then( () => res.status(202))
+    .catch(err => res.status(500).send(err.message + 'SERVER ERROR'))
+})
+
 router.post('/team', (req, res) => {
   db.createNewPlayer(req.body, req.app.get('db'))
     .then((newPlayer) => {

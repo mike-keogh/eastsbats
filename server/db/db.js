@@ -40,6 +40,12 @@ function showGameList (body, knex) {
   return knex('game')
 }
 
+function deletePlayer (id, knex) {
+  return knex('players')
+    .where('players.id', id)
+    .del()
+}
+
 module.exports = {
   getPlayer,
   getProfile,
@@ -48,5 +54,6 @@ module.exports = {
   editProfile,
   createNewPlayer,
   insertNewGame,
-  showGameList
+  showGameList,
+  deletePlayer
 }
