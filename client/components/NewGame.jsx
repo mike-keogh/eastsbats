@@ -1,5 +1,7 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
+import { addGameRequest } from '../actions/addGame'
 
 class NewGame extends React.Component {
   constructor(props) {
@@ -15,21 +17,21 @@ class NewGame extends React.Component {
       newGame: newGame
     })
     newGame[e.target.name] = e.target.value
-    console.log(newGame);
+
   }
 
-  onSubmit (e) {
+  submitNewGame (e) {
     e.preventDefault()
-    
+    e.target.reset()
+    const { newGame } = this.state
+    this.props.dispatch(addGameRequest(newGame))
   }
-
-
 
   render() {
     return (
       <div className='newGameComp'>
-      <h4></h4>
-        <form className='newGameComp'>
+      <h4>Update A New Game</h4>
+        <form className='newGameComp' onSubmit={this.submitNewGame.bind(this)}>
           <input type='text' placeholder='opponent' name='opponent' onChange={this.newGameDetails.bind(this)}/>
           <input type='text' placeholder='location' name='location' onChange={this.newGameDetails.bind(this)}/>
           <input type='text' placeholder='season' name='season' onChange={this.newGameDetails.bind(this)}/>
@@ -41,4 +43,4 @@ class NewGame extends React.Component {
   }
 }
 
-export default NewGame
+export default connect()(NewGame)

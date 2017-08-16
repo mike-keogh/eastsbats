@@ -20,8 +20,7 @@ router.get('/team/profile/:id', function(req, res) {
 })
 
 router.post('/team', (req, res) => {
-  const body = req.body
-  db.createNewPlayer(body, req.app.get('db'))
+  db.createNewPlayer(req.body, req.app.get('db'))
     .then((newPlayer) => {
       res.status(201).json(newPlayer)
     })
@@ -43,6 +42,20 @@ router.get('/team', function(req, res) {
     })
     .catch(function (err) {
       res.status(500).send('DATABASE ERROR: ' + err.message)
+    })
+})
+
+router.get('/newGame', (req, res) => {
+  db.showGameList(req.body, req.app.get('db'))
+    .then((game) => {
+      res.json(game)
+    })
+})
+
+router.post('/newGame', (req, res) => {
+  db.insertNewGame(req.body, req.app.get('db'))
+    .then((game) => {
+      res.status(201).json(game)
     })
 })
 

@@ -20,6 +20,8 @@ class Registration extends React.Component {
 
   submitPlayer (e) {
     e.preventDefault()
+    e.target.reset()
+    document.location = '/#/team'
     const { newPlayer } = this.state
     this.props.dispatch(addPlayerRequest(newPlayer))
   }

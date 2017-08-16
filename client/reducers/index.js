@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux'
 
 import team from './team'
-import addPlayerAction from './addPlayer'
+import addPlayerReducer from './addPlayer'
+import addGameReducer from './addGame'
 
 export default combineReducers({
   //combined reducers get exported here
   team,
-  addPlayerAction
+  addPlayerReducer,
+  addGameReducer
 })

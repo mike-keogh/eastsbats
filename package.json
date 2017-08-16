@@ -11,6 +11,7 @@
     "knex": "knex",
     "test": "ava  -v  --serial 'test/**/*.test.js'",
     "test:client": "ava  -v  --serial 'test/client/*.test.js'",
+    "test:server": "ava  -v  --serial 'test/server/*.test.js'",
     "watch": "nodemon -e js,jsx -x npm test",
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback",

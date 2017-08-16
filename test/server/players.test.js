@@ -42,3 +42,28 @@ test.cb('POST /v1/team inserts new object to db, and returns 201', t => {
       t.end()
     })
 })
+
+test.cb('GET /v1/newGame contains an object', t => {
+  request(t.context.app)
+    .get('/v1/newGame')
+    .expect(200)
+    .end((err, res) => {
+      t.is(res.body.length >= 0, true)
+      t.end()
+    })
+})
+
+test.cb('POST /v1/newGame, db receives an object', t => {
+  request(t.context.app)
+    .post('/v1/newGame')
+    .send({location: 'Wellington'})
+    .expect(201)
+    .end((err, res) => {
+      t.context.db('game')
+      .then((data) => {
+        t.is(data.length, 1)
+        t.is(res.body.location, 'Wellington')
+      })
+      t.end()
+    })
+})

@@ -3,7 +3,7 @@ import test from 'ava'
 import { shallow, mount, render } from 'enzyme'
 import jsdom from 'jsdom'
 import sinon from 'sinon'
-import {Provider} from 'react-redux'
+import { Provider } from 'react-redux'
 
 import App from '../../client/components/App'
 import Team from '../../client/components/Team'
@@ -12,9 +12,10 @@ import Images from '../../client/components/Images'
 import Home from '../../client/components/Home'
 import Report from '../../client/components/Report'
 import NewGame from '../../client/components/NewGame'
+import Player from '../../client/components/Player'
 
 import './setup-dom'
-import {MemoryRouter as Router} from 'react-router-dom'
+import { MemoryRouter as Router } from 'react-router-dom'
 import store from '../../client/store'
 
 test('<App /> has correct title', t => {
@@ -41,14 +42,29 @@ test('<Report /> contains p tag', t => {
 test('<Team /> contains all players of the team', t => {
   Team.WrappedComponent.prototype.componentDidMount = () => {}
   const wrapper = mount(
-    <Provider store={store}><Router>
-    <Team team={[{name: 'Felix'}]}/>
-  </Router></Provider>)
+    <Provider store={store}>
+      <Router>
+        <Team team={[{name: 'Felix'}]}/>
+      </Router>
+    </Provider>)
   console.log(wrapper.text())
   t.is(wrapper.find('h4').length, 1)
 })
 
-test.only('<NewGame /> renders a form', t => {
-  const wrapper = shallow(<NewGame />)
+test.only('<Player /> contains player info', t => {
+  Player.prototype.componentWillMount = () => {}
+  PlayerStats.prototype.componentWillMount = () => {}
+  const wrapper = mount(
+        <Player match={{params: {id: 1}}} />
+  )
+  wrapper.setState({player: {age: 22}})
+  t.is(wrapper.find('li').length, 7)
+  wrapper.find('button').simulate('click')
+  console.log(wrapper.find('p'));
+  t.is(wrapper.find('.playerStats').exists(), true)
+})
+
+test('<NewGame /> renders a form', t => {
+  const wrapper = mount(<NewGame store={store}/>)
   t.is(wrapper.find('form').exists(), true)
 })
