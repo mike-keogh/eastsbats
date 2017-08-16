@@ -10,6 +10,8 @@ export default class Player extends React.Component {
     this.state = {
       err: null,
       player: null,
+      batting: null,
+      bowling: null,
       showVisible: false
     }
   }
@@ -23,8 +25,8 @@ export default class Player extends React.Component {
     this.setState({showVisible: false})
   }
 
-  savePlayer(err, player) {
-    this.setState({err, player: player.player})
+  savePlayer(err, {player, batting, bowling}) {
+    this.setState({err, player, batting, bowling})
   }
 
   refreshPlayerData(id) {
@@ -38,7 +40,7 @@ export default class Player extends React.Component {
   }
 
   render() {
-    const {player} = this.state
+    const {player, batting, bowling} = this.state
     return player
       ? (
         <div>
@@ -65,3 +67,16 @@ export default class Player extends React.Component {
     : <div>Who?</div>
   }
 }
+
+// (
+//   <div className="playerStats">
+//     {batting
+//       ? <BattingStats batting={batting} />
+//       :
+//     }
+//     {
+//       bowling
+//         ? <BowlingStats bowling={bowling} />
+//     }
+//   </div>
+// )

@@ -16,25 +16,14 @@ export default class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      err: null,
-      team: []
+
     }
   }
+  // componentWillMount() {
 
-  componentWillMount() {
-    this.refreshTeamData()
-  }
-
-  saveTeam(err, team) {
-    this.setState({err, team: team || []})
-  }
-
-  refreshTeamData() {
-    getTeam(this.saveTeam.bind(this))
-  }
-
+  // }
   render() {
-    let {err, team} = this.state
+    let {err} = this.state
     return (
       <div className="container">
         <h1>The Bats</h1>
@@ -45,12 +34,10 @@ export default class App extends React.Component {
             <Route path="/images" component={Images} />
             <Route path="/report" component={Report} />
             <Route path="/registration" component={Registration} />
-            <Route path="/team/" component=
-              {(props) => <Team team={team} />}
-            />
+            <Route path="/team/" component={Team }/>
             <Route path="/team/profile/:id" component={Player} />
             <Route path="/team/profile/:id/stats" component={PlayerStats} />
-            <Route path="/newGame" component={NewGame}/>
+            <Route path="/games" component={NewGame}/>
           </div>
         </Router>
       </div>

@@ -5,6 +5,7 @@ function getPlayer (knex) {
 function createNewPlayer (body, knex) {
   return knex('players')
     .insert(body)
+    .then(id => getProfile(id[0], knex))
 }
 
 function getProfile(id, knex) {
@@ -31,16 +32,8 @@ function editProfile(id, data, knex) {
     .update(data)
 }
 
-function insertNewGame (body, knex) {
-  return knex('game')
-    .insert(body)
-}
-
-function showGameList (body, knex) {
-  return knex('game')
-}
-
 function deletePlayer (id, knex) {
+  console.log({id});
   return knex('players')
     .where('players.id', id)
     .del()
@@ -48,12 +41,10 @@ function deletePlayer (id, knex) {
 
 module.exports = {
   getPlayer,
+  createNewPlayer,
   getProfile,
   getPlayerBowling,
   getPlayerBatting,
   editProfile,
-  createNewPlayer,
-  insertNewGame,
-  showGameList,
   deletePlayer
 }

@@ -43,9 +43,9 @@ test.cb('POST /v1/team inserts new object to db, and returns 201', t => {
     })
 })
 
-test.cb('GET /v1/newGame contains an object', t => {
+test.cb('GET /v1/games contains an object', t => {
   request(t.context.app)
-    .get('/v1/newGame')
+    .get('/v1/games')
     .expect(200)
     .end((err, res) => {
       t.is(res.body.length >= 0, true)
@@ -53,9 +53,9 @@ test.cb('GET /v1/newGame contains an object', t => {
     })
 })
 
-test.cb('POST /v1/newGame, db receives an object', t => {
+test.cb('POST /v1/games, db receives an object', t => {
   request(t.context.app)
-    .post('/v1/newGame')
+    .post('/v1/games')
     .send({location: 'Wellington'})
     .expect(201)
     .end((err, res) => {
@@ -65,5 +65,17 @@ test.cb('POST /v1/newGame, db receives an object', t => {
         t.is(res.body.location, 'Wellington')
       })
       t.end()
+    })
+})
+
+test.cb('DEL /v1/team/profile/:id', t => {
+  request(t.context.app)
+    .delete('/v1/team/profile/1')
+    .expect(202)
+    .end((err, res) => {
+      t.context.db('players')
+      .then((data) => {
+        t.is(data.length, )
+      })
     })
 })

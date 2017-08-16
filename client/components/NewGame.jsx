@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { addGameRequest } from '../actions/addGame'
+import { addGameRequest } from '../actions/games'
 
 class NewGame extends React.Component {
   constructor(props) {

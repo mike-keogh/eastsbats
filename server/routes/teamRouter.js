@@ -1,14 +1,14 @@
 var express = require('express')
 var router = express.Router()
 
-var db = require('../db/db')
+var playerDb = require('../db/playerDb')
 
-router.get('/team/profile/:id', function(req, res) {
-  db.getProfile(req.params.id, req.app.get('db'))
+router.get('/profile/:id', function(req, res) {
+  playerDb.getProfile(req.params.id, req.app.get('db'))
   .then(function(player) {
-    db.getPlayerBowling(req.params.id, req.app.get('db'))
+    playerDb.getPlayerBowling(req.params.id, req.app.get('db'))
       .then(function(bowling) {
-        db.getPlayerBatting(req.params.id, req.app.get('db'))
+        playerDb.getPlayerBatting(req.params.id, req.app.get('db'))
           .then(function(batting) {
             res.json({player, bowling, batting})
           })
@@ -19,14 +19,14 @@ router.get('/team/profile/:id', function(req, res) {
   })
 })
 
-router.delete('/team/profile/:id', (req, res) => {
-  db.deletePlayer(req.params.id, req.app.get('db'))
-    .then( () => res.status(202))
+router.delete('/profile/:id', (req, res) => {
+  playerDb.deletePlayer(req.params.id, req.app.get('db'))
+    .then( () => res.sendStatus(202))
     .catch(err => res.status(500).send(err.message + 'SERVER ERROR'))
 })
 
-router.post('/team', (req, res) => {
-  db.createNewPlayer(req.body, req.app.get('db'))
+router.post('/', (req, res) => {
+  playerDb.createNewPlayer(req.body, req.app.get('db'))
     .then((newPlayer) => {
       res.status(201).json(newPlayer)
     })
@@ -41,27 +41,13 @@ router.post('/team', (req, res) => {
 //     })
 // })
 
-router.get('/team', function(req, res) {
-  db.getPlayer(req.app.get('db'))
+router.get('/', function(req, res) {
+  playerDb.getPlayer(req.app.get('db'))
     .then(function(players) {
       res.json(players)
     })
     .catch(function (err) {
       res.status(500).send('DATABASE ERROR: ' + err.message)
-    })
-})
-
-router.get('/newGame', (req, res) => {
-  db.showGameList(req.body, req.app.get('db'))
-    .then((game) => {
-      res.json(game)
-    })
-})
-
-router.post('/newGame', (req, res) => {
-  db.insertNewGame(req.body, req.app.get('db'))
-    .then((game) => {
-      res.status(201).json(game)
     })
 })
 

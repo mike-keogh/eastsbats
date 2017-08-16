@@ -1,5 +1,5 @@
 import React from 'react'
-
+import request from 'superagent'
 import { getPlayerProfile } from '../api'
 
 export default class PlayerStats extends React.Component {
@@ -22,7 +22,14 @@ export default class PlayerStats extends React.Component {
     }
 
     refreshPlayerData() {
-      getPlayerProfile(this.props.player.id, this.savePlayer.bind(this))
+      request
+        .get('/v1/team/profile/' + this.props.player.id)
+        .end((err, res) => {
+          if (err) callback(err)
+          else {
+            savePlayer(null, res.body)
+          }
+        })
     }
 
   render() {

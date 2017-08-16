@@ -90,7 +90,7 @@ exports.seed = function(knex, Promise) {
         nickname: 'Steven Speilberg',
         born: '19th December 1946, Cincinatti',
         age: 70,
-        teams: 'ECC Sharks, ECC Bats'
+        teams: 'ECC Sharks, ECC Bats',
         playing_role: 'Middle order batsman',
         image: '/images/Paul_Matthews.jpg'
       }, {
