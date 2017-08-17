@@ -9,11 +9,21 @@
     "start": "node server/index.js",
     "dev": "nodemon --watch server server/index & webpack --watch",
     "knex": "knex",
-    "test": "tape -r babel-register 'test/**/*.test.js' | tap-diff",
+    "test": "ava  -v  --serial 'test/**/**/*.test.js'",
+    "test:client": "ava  -v  --serial 'test/client/**/*.test.js'",
+    "test:server": "ava  -v  --serial 'test/server/*.test.js'",
     "watch": "nodemon -e js,jsx -x npm test",
     "migrate": "knex migrate:latest",
     "rollback": "knex migrate:rollback",
-    "seed": "knex seed:run"
+    "seed": "knex seed:run",
+    "h:migrate": "heroku run knex migrate:latest",
+    "h:rollback": "heroku run knex migrate:rollback",
+    "h:seed": "heroku run knex seed:run",
+    "h:deploy": "git push heroku master"
+  },
+  "ava": {
+    "require": "babel-register",
+    "babel": "inherit"
   },
   "babel": {
     "presets": [
@@ -24,8 +34,10 @@
   "author": "EDA",
   "license": "ISC",
   "devDependencies": {
+    "ava": "^0.21.0",
     "enzyme": "^2.7.0",
     "nodemon": "^1.11.0",
+    "sinon": "^3.2.0",
     "tap-diff": "^0.1.1",
     "tape": "^4.6.3"
   },
@@ -38,17 +50,20 @@
     "body-parser": "^1.15.2",
     "cors": "^2.8.4",
     "express": "^4.14.0",
-    "knex": "^0.13.0",
-    "pg": "^7.1.0",
-    "sqlite3": "^3.1.8",
-    "superagent": "^3.5.2",
-    "supertest": "^3.0.0",
     "jsdom": "^11.1.0",
     "jsx-loader": "^0.13.2",
+    "knex": "^0.13.0",
+    "pg": "^7.1.0",
     "react": "^15.4.2",
     "react-addons-test-utils": "^15.4.2",
     "react-dom": "^15.4.2",
+    "react-redux": "^5.0.6",
     "react-router-dom": "^4.1.2",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "sqlite3": "^3.1.8",
+    "superagent": "^3.5.2",
+    "supertest": "^3.0.0",
     "webpack": "^2.3.3",
     "webpack-dev-server": "^2.4.2"
   }

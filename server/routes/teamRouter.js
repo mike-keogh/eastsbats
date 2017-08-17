@@ -1,14 +1,14 @@
 var express = require('express')
 var router = express.Router()
 
-var db = require('../db/db')
+var playerDb = require('../db/playerDb')
 
-router.get('/team/profile/:id', function(req, res) {
-  db.getProfile(req.params.id, req.app.get('db'))
+router.get('/profile/:id', function(req, res) {
+  playerDb.getProfile(req.params.id, req.app.get('db'))
   .then(function(player) {
-    db.getPlayerBowling(req.params.id, req.app.get('db'))
+    playerDb.getPlayerBowling(req.params.id, req.app.get('db'))
       .then(function(bowling) {
-        db.getPlayerBatting(req.params.id, req.app.get('db'))
+        playerDb.getPlayerBatting(req.params.id, req.app.get('db'))
           .then(function(batting) {
             res.json({player, bowling, batting})
           })
@@ -19,12 +19,16 @@ router.get('/team/profile/:id', function(req, res) {
   })
 })
 
-router.post('/registration', (err, res) => {
-  const body = req.body
-  console.log("player", body);
-  db.createNewPlayer(body, req.app.get('db'))
+router.delete('/profile/:id', (req, res) => {
+  playerDb.deletePlayer(req.params.id, req.app.get('db'))
+    .then( () => res.sendStatus(202))
+    .catch(err => res.status(500).send(err.message + 'SERVER ERROR'))
+})
+
+router.post('/', (req, res) => {
+  playerDb.createNewPlayer(req.body, req.app.get('db'))
     .then((newPlayer) => {
-      res.json(newPlayer)
+      res.status(201).json(newPlayer)
     })
 })
 
@@ -37,8 +41,8 @@ router.post('/registration', (err, res) => {
 //     })
 // })
 
-router.get('/team', function(req, res) {
-  db.getPlayer(req.app.get('db'))
+router.get('/', function(req, res) {
+  playerDb.getPlayer(req.app.get('db'))
     .then(function(players) {
       res.json(players)
     })

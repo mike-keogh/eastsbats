@@ -1,13 +1,28 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-export default function Team ({team}) {
-  const renderTeamItem = (player, key) => (<Link to={'/team/profile/' + player.id}  key={key}><h4>{player.name}</h4></Link>)
-  const renderTeam = () => team.map(renderTeamItem)
+import TeamPlayer from './TeamPlayer'
+import { getTeam } from '../actions/team'
 
-  return (
-    <div className="team">
-      {renderTeam(team)}
-    </div>
-  )
+class Team extends React.Component {
+  componentDidMount() {
+    this.props.dispatch(getTeam())
+  }
+  render() {
+    const { team } = this.props
+    const renderTeamItem = (player, key) => <TeamPlayer player={player} key={key} />
+    return (
+      <div className="team">
+        {team.map(renderTeamItem)}
+      </div>
+    )
+  }
 }
+
+function mapStateToProps ({ team }, props) {
+  if (props.team) team = props.team
+  return { team }
+}
+
+export default connect(mapStateToProps)(Team)

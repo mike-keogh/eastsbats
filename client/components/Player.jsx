@@ -1,8 +1,11 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import request from 'superagent'
 
-import {getPlayerProfile} from '../api'
-import PlayerStats from './PlayerStats'
+import {getPlayerProfile} from '../actions/team'
+import PlayerBattingStats from './PlayerBattingStats'
+import PlayerBowlingStats from './PlayerBowlingStats'
+
 
 export default class Player extends React.Component {
   constructor(props) {
@@ -10,6 +13,8 @@ export default class Player extends React.Component {
     this.state = {
       err: null,
       player: null,
+      batting: null,
+      bowling: null,
       showVisible: false
     }
   }
@@ -19,18 +24,23 @@ export default class Player extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    console.log(props)
     this.refreshPlayerData(props.match.params.id)
     this.setState({showVisible: false})
   }
 
-  savePlayer(err, player) {
-    this.setState({err, player: player.player})
+  savePlayer(err, {player, batting, bowling}) {
+    this.setState({err, player, batting, bowling})
   }
 
   refreshPlayerData(id) {
-
-    getPlayerProfile(id, this.savePlayer.bind(this))
+    request
+      .get('/v1/team/profile/' + id)
+      .end((err, res) => {
+        if (err) callback(err)
+        else {
+          this.savePlayer(null, res.body)
+        }
+      })
   }
 
   toggleSelected() {
@@ -40,7 +50,7 @@ export default class Player extends React.Component {
   }
 
   render() {
-    const {player} = this.state
+    const {player, batting, bowling} = this.state
     return player
       ? (
         <div>
@@ -56,15 +66,31 @@ export default class Player extends React.Component {
             <li>Bowling Style: {player.bowling_style}</li>
           </ul>
 
-            <img src={player.image} />
+          <img src={player.image} />
 
+          <button className='playerButton' onClick={e => this.toggleSelected()}>Show Stats</button>
+        </div>
 
-        <button className='playerButton' onClick={e => this.toggleSelected()}>Show Stats</button>
-      </div>
-
-        {this.state.showVisible && <PlayerStats player={player}/>}
+        {this.state.showVisible &&
+          <div className='playerStats'>
+            <PlayerBattingStats batting={batting} />
+            <PlayerBowlingStats bowling={bowling} />
+        </div>}
         </div>
       )
     : <div>Who?</div>
   }
 }
+
+// (
+//   <div className="playerStats">
+//     {batting
+//       ? <BattingStats batting={batting} />
+//       :
+//     }
+//     {
+//       bowling
+//         ? <BowlingStats bowling={bowling} />
+//     }
+//   </div>
+// )
