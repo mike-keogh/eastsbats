@@ -1,16 +1,17 @@
 import React from 'react'
 import { Link, HashRouter as Router, Route } from 'react-router-dom'
 
-import { getTeam } from '../api'
 import Team from './Team'
 import Nav from './Nav'
 import Player from './Player'
-import PlayerStats from './PlayerStats'
 import Images from './Images'
 import Home from './Home'
 import Report from './Report'
 import Registration from './Registration'
 import NewGame from './NewGame'
+import PlayerBattingStats from './PlayerBattingStats'
+import PlayerBowlingStats from './PlayerBowlingStats'
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -36,7 +37,8 @@ export default class App extends React.Component {
             <Route path="/registration" component={Registration} />
             <Route path="/team/" component={Team }/>
             <Route path="/team/profile/:id" component={Player} />
-            <Route path="/team/profile/:id/stats" component={PlayerStats} />
+            <Route path="/team/profile/:id/battingstats" component={PlayerBattingStats} />
+            <Route path="/team/profile/:id/bowlingstats" component={PlayerBowlingStats} />
             <Route path="/games" component={NewGame}/>
           </div>
         </Router>

@@ -2,7 +2,6 @@ import request from 'superagent'
 
 //GET
 export const receiveGameAction = (games) => {
-  console.log('action ', games);
   return {
     type: 'RECEIVE_GAMES',
     games
@@ -32,7 +31,6 @@ export const addGameAction = (newGame) => {
 }
 
 //use the receive game request in the dipatch of the post to update new data after the post
-
 export function addGameRequest (newGame) {
   return (dispatch) => {
     request

@@ -39,11 +39,9 @@ class NewGame extends React.Component {
 
   render() {
     const { games } = this.props
-    console.log('games', games)
-
     return (
       <div className="gameForm">
-        <button onClick={(e) => this.toggleSelected()}> New Game</button>
+        <button onClick={(e) => this.toggleSelected()}>New Game</button>
         {this.state.showVisible &&
           <div className='newGameComp'>
             <h4>Update A New Game</h4>
@@ -63,14 +61,10 @@ class NewGame extends React.Component {
               return <div key={i}>
                 <li>Location: {game.location}</li>
                 <li>Opponent: {game.opponent}</li>
-
               </div>
             })}
-
-
           </ul>
         </div>
-
       </div>
     )
   }
