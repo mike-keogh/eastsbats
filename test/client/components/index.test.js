@@ -5,17 +5,17 @@ import jsdom from 'jsdom'
 import sinon from 'sinon'
 import { Provider } from 'react-redux'
 
-import App from '../../client/components/App'
-import Team from '../../client/components/Team'
-import Images from '../../client/components/Images'
-import Home from '../../client/components/Home'
-import Report from '../../client/components/Report'
-import NewGame from '../../client/components/NewGame'
-import Player from '../../client/components/Player'
+import App from '../../../client/components/App'
+import Team from '../../../client/components/Team'
+import Images from '../../../client/components/Images'
+import Home from '../../../client/components/Home'
+import Report from '../../../client/components/Report'
+import NewGame from '../../../client/components/NewGame'
+import Player from '../../../client/components/Player'
 
-import './setup-dom'
+import '../setup-dom'
 import { MemoryRouter as Router } from 'react-router-dom'
-import store from '../../client/store'
+import store from '../../../client/store'
 
 test('<App /> has correct title', t => {
   const expected = 'The Bats'
@@ -52,7 +52,6 @@ test('<Team /> contains all players of the team', t => {
 
 test('<Player /> contains player info', t => {
   Player.prototype.componentWillMount = () => {}
-  PlayerStats.prototype.componentWillMount = () => {}
   const wrapper = mount(
         <Player match={{params: {id: 1}}} />
   )
@@ -60,7 +59,7 @@ test('<Player /> contains player info', t => {
   t.is(wrapper.find('li').length, 7)
 })
 
-test.only('<Player /> renders a child component with button click', t=> {
+test('<Player /> renders a child component with button click', t=> {
   Player.prototype.componentWillMount = () => {}
   const wrapper = mount(<Player match={{params: {id: 1}}} />)
   wrapper.setState({player: {}, bowling: {}, batting: {}})
@@ -68,7 +67,10 @@ test.only('<Player /> renders a child component with button click', t=> {
   t.is(wrapper.find('.bowlingStats').exists(), true)
 })
 
-test('<NewGame /> renders a form', t => {
+test.only('<NewGame /> renders a form, through a button click', t => {
+  NewGame.prototype.componentDidMount = () => {}
   const wrapper = mount(<NewGame store={store}/>)
+  wrapper.setState({newGame: {}})
+  wrapper.find('button').simulate('click')
   t.is(wrapper.find('form').exists(), true)
 })
