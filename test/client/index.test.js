@@ -7,7 +7,6 @@ import { Provider } from 'react-redux'
 
 import App from '../../client/components/App'
 import Team from '../../client/components/Team'
-import PlayerStats from '../../client/components/PlayerStats'
 import Images from '../../client/components/Images'
 import Home from '../../client/components/Home'
 import Report from '../../client/components/Report'
@@ -63,19 +62,10 @@ test('<Player /> contains player info', t => {
 
 test.only('<Player /> renders a child component with button click', t=> {
   Player.prototype.componentWillMount = () => {}
-  PlayerStats.prototype.componentWillMount = () => {}
-  const wrapper = mount(
-    <Provider store={store}>
-      <Route>
-        <Player match={{params: {id: 1}}} team={team} />
-      </Route>
-    </Provider>
-  )
+  const wrapper = mount(<Player match={{params: {id: 1}}} />)
   wrapper.setState({player: {}, bowling: {}, batting: {}})
-  console.log('debug', wrapper.html())
-  console.log('node', wrapper);
   wrapper.find('.playerButton').simulate('click')
-  t.is(wrapper.find('div').exists(), true)
+  t.is(wrapper.find('.bowlingStats').exists(), true)
 })
 
 test('<NewGame /> renders a form', t => {
