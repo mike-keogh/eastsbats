@@ -46,7 +46,6 @@ test('<Team /> contains all players of the team', t => {
         <Team team={[{name: 'Felix'}]}/>
       </Router>
     </Provider>)
-  console.log(wrapper.text())
   t.is(wrapper.find('h4').length, 1)
 })
 
