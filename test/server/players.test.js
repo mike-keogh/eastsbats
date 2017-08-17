@@ -45,7 +45,7 @@ test.cb('POST /v1/team inserts new object to db, and returns 201', t => {
 
 
 
-test.cb('DEL /v1/team/profile/:id', t => {
+test.cb('DEL /v1/team/profile/:id, deletes a player', t => {
   request(t.context.app)
     .delete('/v1/team/profile/1')
     .expect(202)

@@ -46,7 +46,6 @@ test('<Team /> contains all players of the team', t => {
         <Team team={[{name: 'Felix'}]}/>
       </Router>
     </Provider>)
-  console.log(wrapper.text())
   t.is(wrapper.find('h4').length, 1)
 })
 
@@ -67,7 +66,7 @@ test('<Player /> renders a child component with button click', t=> {
   t.is(wrapper.find('.bowlingStats').exists(), true)
 })
 
-test.only('<NewGame /> renders a form, through a button click', t => {
+test('<NewGame /> renders a form, through a button click', t => {
   NewGame.prototype.componentDidMount = () => {}
   const wrapper = mount(<NewGame store={store}/>)
   wrapper.setState({newGame: {}})
