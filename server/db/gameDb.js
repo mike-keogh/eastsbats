@@ -4,7 +4,7 @@ function insertNewGame (body, knex) {
 }
 
 function showGameList (body, knex) {
-  return knex('game')
+  return knex('game').select()
 }
 
 module.exports = {

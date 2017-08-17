@@ -1,4 +1,5 @@
 export default function games(state = [], action) {
+  console.log('reducer ', action.games);
   switch (action.type) {
     case 'RECEIVE_GAMES':
       return [...action.games]

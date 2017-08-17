@@ -51,7 +51,7 @@ test('<Team /> contains all players of the team', t => {
   t.is(wrapper.find('h4').length, 1)
 })
 
-test.only('<Player /> contains player info', t => {
+test('<Player /> contains player info', t => {
   Player.prototype.componentWillMount = () => {}
   PlayerStats.prototype.componentWillMount = () => {}
   const wrapper = mount(
@@ -59,9 +59,23 @@ test.only('<Player /> contains player info', t => {
   )
   wrapper.setState({player: {age: 22}})
   t.is(wrapper.find('li').length, 7)
-  wrapper.find('button').simulate('click')
-  console.log(wrapper.find('p'));
-  t.is(wrapper.find('.playerStats').exists(), true)
+})
+
+test.only('<Player /> renders a child component with button click', t=> {
+  Player.prototype.componentWillMount = () => {}
+  PlayerStats.prototype.componentWillMount = () => {}
+  const wrapper = mount(
+    <Provider store={store}>
+      <Route>
+        <Player match={{params: {id: 1}}} team={team} />
+      </Route>
+    </Provider>
+  )
+  wrapper.setState({player: {}, bowling: {}, batting: {}})
+  console.log('debug', wrapper.html())
+  console.log('node', wrapper);
+  wrapper.find('.playerButton').simulate('click')
+  t.is(wrapper.find('div').exists(), true)
 })
 
 test('<NewGame /> renders a form', t => {

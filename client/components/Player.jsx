@@ -1,8 +1,11 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import request from 'superagent'
 
-import {getPlayerProfile} from '../api'
-import PlayerStats from './PlayerStats'
+import {getPlayerProfile} from '../actions/team'
+import PlayerBattingStats from './PlayerBattingStats'
+import PlayerBowlingStats from './PlayerBowlingStats'
+
 
 export default class Player extends React.Component {
   constructor(props) {
@@ -30,7 +33,14 @@ export default class Player extends React.Component {
   }
 
   refreshPlayerData(id) {
-    getPlayerProfile(id, this.savePlayer.bind(this))
+    request
+      .get('/v1/team/profile/' + id)
+      .end((err, res) => {
+        if (err) callback(err)
+        else {
+          this.savePlayer(null, res.body)
+        }
+      })
   }
 
   toggleSelected() {
@@ -61,7 +71,11 @@ export default class Player extends React.Component {
           <button className='playerButton' onClick={e => this.toggleSelected()}>Show Stats</button>
         </div>
 
-        {this.state.showVisible && <PlayerStats player={player}/>}
+        {this.state.showVisible &&
+          <div className='playerStats'>
+            <PlayerBattingStats batting={batting} />
+            <PlayerBowlingStats bowling={bowling} />
+        </div>}
         </div>
       )
     : <div>Who?</div>
