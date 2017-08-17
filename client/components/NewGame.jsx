@@ -56,14 +56,28 @@ class NewGame extends React.Component {
         }
 
         <div className="gameList">
-          <ul>
+          <table>
+            <thead>
+              <tr className="tableHeader">
+                <th>Opponent</th>
+                <th>Location</th>
+                <th>Date</th>
+                <th>Season</th>
+              </tr>
+            </thead>
+            <tbody>
+
             {games.map((game, i) => {
-              return <div key={i}>
-                <li>Location: {game.location}</li>
-                <li>Opponent: {game.opponent}</li>
-              </div>
+              return <tr key={i}>
+                <td>{game.opponent}</td>
+                <td>{game.location}</td>
+                <td>{game.date}</td>
+                <td>{game.season}</td>
+              </tr>
+
             })}
-          </ul>
+          </tbody>
+          </table>
         </div>
       </div>
     )

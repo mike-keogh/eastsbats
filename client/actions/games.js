@@ -41,7 +41,7 @@ export function addGameRequest (newGame) {
         console.error(err.message)
         return
       }
-      dispatch(addGameAction(res.body))
+      dispatch(receiveGameRequest(res.body))
     })
   }
 }
