@@ -1,13 +1,14 @@
 import React from 'react'
 import { connect, dispatch } from 'react-redux'
 
-import { addGameRequest, receiveGameRequest, deleteGameRequest } from '../actions/games'
+import { addGameRequest, receiveGameRequest, deleteGameRequest, showForm } from '../actions/games'
 
 class NewGame extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       newGame: {},
+      // newGameFormToggle: false
       showVisible: false
     }
   }
@@ -88,7 +89,8 @@ class NewGame extends React.Component {
 }
 function mapStateToProps (state, props) {
     return {
-      games: state.games
+      games: state.games,
+      //should be visible state goes here?
     }
   }
 

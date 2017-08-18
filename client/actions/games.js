@@ -67,3 +67,5 @@ export function deleteGameRequest (game) {
       })
   }
 }
+
+//UPDATE

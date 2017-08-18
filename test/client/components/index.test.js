@@ -82,8 +82,20 @@ test('<TeamPlayer />, hover shows a delete button', t => {
         <TeamPlayer player={{id: 1}}/>
       </Router>
     </Provider>)
-    console.log(wrapper.html())
-    wrapper.setState({hover: true})
+    wrapper.setState({hover: false})
     wrapper.find('div').simulate('mouseEnter')
   t.is(wrapper.find('button').exists(), true)
+})
+
+test('<TeamPlayer /> , hover off doesnt show a button', t => {
+  const wrapper = mount(
+    <Provider store={store}>
+      <Router>
+        <TeamPlayer player={{id: 2}}/>
+      </Router>
+    </Provider>
+  )
+  wrapper.setState({hover: true})
+  wrapper.find('div').simulate('mouseLeave')
+  t.is(wrapper.find('button').exists(), false)
 })
