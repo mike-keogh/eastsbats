@@ -56,18 +56,14 @@ export const deletePlayerAction = (player) => {
 }
 
 export const deletePlayerRequest = (player) => {
-  console.log({player});
   return (dispatch) => {
-    console.log({player});
     request
       .delete('/v1/team/profile/' + player.id)
       .end((err, res) => {
-        console.log({err, res});
         if (err) {
           console.error(err.message)
           return
         }
-        console.log(res.body);
         dispatch(deletePlayerAction(player))
       })
   }

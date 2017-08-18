@@ -31,3 +31,16 @@ test.cb('POST /v1/games, db receives an object', t => {
       t.end()
     })
 })
+
+test.cb('DELETE /v1/games/:id, can delete a game', t => {
+  request(t.context.app)
+    .delete('/v1/games/1')
+    .expect(202)
+    .end((err, res) => {
+      t.context.db('game')
+      .then((data) => {
+        t.is(data.length, 0)
+      })
+      t.end()
+    })
+})

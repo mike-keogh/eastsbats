@@ -34,12 +34,12 @@ test.cb('POST /v1/team inserts new object to db, and returns 201', t => {
     .send({name: 'ted'})
     .expect(201)
     .end((err, res) => {
+      t.is(res.body.name, 'ted')
       t.context.db('players')
       .then((data) => {
         t.is(data.length, 12)
-        t.is(res.body.name, 'ted')
+        t.end()
       })
-      t.end()
     })
 })
 

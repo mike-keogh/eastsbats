@@ -1,5 +1,5 @@
 * {
-  font-family: helvetica;
+  font-family: 'Roboto', sans-serif;
   line-height: 1.5;
 }
 
@@ -55,15 +55,42 @@
 }
 
 .battingStats {
-  text-align: left;  
+  text-align: left;
 }
 
 .matchReport {
   padding: 20px;
 }
+
 .teamImages img {
   max-width: 60%;
   margin: 0 auto;
+}
+
+.gameForm {
+  padding: 0 5% 0 5%;
+}
+
+.formButton {
+  margin-bottom: 5%;
+}
+
+.newGameComp {
+  margin-bottom: 5%;
+}
+
+.gameTable {
+  border: solid black 1px;
+}
+.tableHeadText {
+  font-weight: 800;
+  padding-bottom: 2%;
+}
+
+.tableData {
+  padding: 2%;
+  border: solid black 1px;
+
 }
 
 a {

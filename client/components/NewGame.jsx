@@ -1,13 +1,14 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { connect, dispatch } from 'react-redux'
 
-import { addGameRequest, receiveGameRequest } from '../actions/games'
+import { addGameRequest, receiveGameRequest, deleteGameRequest, showForm } from '../actions/games'
 
 class NewGame extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       newGame: {},
+      // newGameFormToggle: false
       showVisible: false
     }
   }
@@ -41,7 +42,7 @@ class NewGame extends React.Component {
     const { games } = this.props
     return (
       <div className="gameForm">
-        <button onClick={(e) => this.toggleSelected()}>New Game</button>
+        <button className="formButton" onClick={(e) => this.toggleSelected()}>New Game</button>
         {this.state.showVisible &&
           <div className='newGameComp'>
             <h4>Update A New Game</h4>
@@ -56,14 +57,31 @@ class NewGame extends React.Component {
         }
 
         <div className="gameList">
-          <ul>
+          <table className="gameTable">
+            <thead>
+              <tr className="tableHeader">
+                <th className='tableHeadText'>Opponent</th>
+                <th className='tableHeadText'>Location</th>
+                <th className='tableHeadText'>Date</th>
+                <th className='tableHeadText'>Season</th>
+                <th className='tableHeadText'>Delete game</th>
+
+              </tr>
+            </thead>
+            <tbody>
+
             {games.map((game, i) => {
-              return <div key={i}>
-                <li>Location: {game.location}</li>
-                <li>Opponent: {game.opponent}</li>
-              </div>
+              return <tr key={i} className="tableData">
+                <td>{game.opponent}</td>
+                <td>{game.location}</td>
+                <td>{game.date}</td>
+                <td>{game.season}</td>
+                <td><button onClick={ () => this.props.dispatch(deleteGameRequest(game))}>✗</button></td>
+              </tr>
+
             })}
-          </ul>
+          </tbody>
+          </table>
         </div>
       </div>
     )
@@ -71,7 +89,8 @@ class NewGame extends React.Component {
 }
 function mapStateToProps (state, props) {
     return {
-      games: state.games
+      games: state.games,
+      //should be visible state goes here?
     }
   }
 
