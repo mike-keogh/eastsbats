@@ -12,9 +12,10 @@ import Home from '../../../client/components/Home'
 import Report from '../../../client/components/Report'
 import NewGame from '../../../client/components/NewGame'
 import Player from '../../../client/components/Player'
+import TeamPlayer from '../../../client/components/TeamPlayer'
 
 import '../setup-dom'
-import { MemoryRouter as Router } from 'react-router-dom'
+import { MemoryRouter as Router, Link } from 'react-router-dom'
 import store from '../../../client/store'
 
 test('<App /> has correct title', t => {
@@ -72,4 +73,17 @@ test('<NewGame /> renders a form, through a button click', t => {
   wrapper.setState({newGame: {}})
   wrapper.find('button').simulate('click')
   t.is(wrapper.find('form').exists(), true)
+})
+
+test('<TeamPlayer />, hover shows a delete button', t => {
+  const wrapper = mount(
+    <Provider store={store} >
+      <Router>
+        <TeamPlayer player={{id: 1}}/>
+      </Router>
+    </Provider>)
+    console.log(wrapper.html())
+    wrapper.setState({hover: true})
+    wrapper.find('div').simulate('mouseEnter')
+  t.is(wrapper.find('button').exists(), true)
 })

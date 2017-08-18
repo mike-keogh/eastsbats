@@ -1,7 +1,7 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { connect, dispatch } from 'react-redux'
 
-import { addGameRequest, receiveGameRequest } from '../actions/games'
+import { addGameRequest, receiveGameRequest, deleteGameRequest } from '../actions/games'
 
 class NewGame extends React.Component {
   constructor(props) {
@@ -41,7 +41,7 @@ class NewGame extends React.Component {
     const { games } = this.props
     return (
       <div className="gameForm">
-        <button onClick={(e) => this.toggleSelected()}>New Game</button>
+        <button className="formButton" onClick={(e) => this.toggleSelected()}>New Game</button>
         {this.state.showVisible &&
           <div className='newGameComp'>
             <h4>Update A New Game</h4>
@@ -56,23 +56,26 @@ class NewGame extends React.Component {
         }
 
         <div className="gameList">
-          <table>
+          <table className="gameTable">
             <thead>
               <tr className="tableHeader">
-                <th>Opponent</th>
-                <th>Location</th>
-                <th>Date</th>
-                <th>Season</th>
+                <th className='tableHeadText'>Opponent</th>
+                <th className='tableHeadText'>Location</th>
+                <th className='tableHeadText'>Date</th>
+                <th className='tableHeadText'>Season</th>
+                <th className='tableHeadText'>Delete game</th>
+
               </tr>
             </thead>
             <tbody>
 
             {games.map((game, i) => {
-              return <tr key={i}>
+              return <tr key={i} className="tableData">
                 <td>{game.opponent}</td>
                 <td>{game.location}</td>
                 <td>{game.date}</td>
                 <td>{game.season}</td>
+                <td><button onClick={ () => this.props.dispatch(deleteGameRequest(game))}>✗</button></td>
               </tr>
 
             })}
