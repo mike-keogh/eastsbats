@@ -1,6 +1,7 @@
 * {
   font-family: 'Roboto', sans-serif;
   line-height: 1.5;
+
 }
 
 .container {
@@ -19,29 +20,39 @@
   justify-content: space-between;
   margin-top: 50px;
   margin-bottom: 50px;
+  text-decoration: none;
+  background-color: antique-white;
+  transition: .3s background-color;
 }
+
 
 .team {
   max-width: 25%;
   display: inline;
   float: left;
   border: 1px solid black;
+  margin-left: 5%;
 }
 
 .playerDetails img {
   border: 1px solid black;
-  display: flex;
-  flex-wrap: wrap;
+  display: inline;
+  position: relative;
   max-width: 50%;
   border: 1px solid black;
-  width: 300px;
+  width: 200px;
   height: auto;
   float: right;
   margin-left: 20%;
 }
+
 .playerDetails {
-  width: 80%;
+  width: 50%;
   margin-left: 20%;
+  font-weight: lighter;
+}
+
+.playerDetails p {
   font-weight: lighter;
 }
 
