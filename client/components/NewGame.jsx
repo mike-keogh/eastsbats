@@ -66,11 +66,12 @@ class NewGame extends React.Component {
                 <th className='tableHeadText'>Date</th>
                 <th className='tableHeadText'>Season</th>
                 <th className='tableHeadText'>Delete game</th>
+                <th className='tableHeadText'>Update game</th>
+                <th className='tableHeadText'>Innings data</th>
 
               </tr>
             </thead>
             <tbody>
-
             {games.map((game, i) => {
               return <GameList game={game} key={i} />
             })}
