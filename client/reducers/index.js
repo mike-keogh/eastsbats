@@ -4,7 +4,6 @@ import team from './team'
 import games from './games'
 
 export default combineReducers({
-  //combined reducers get exported here
   team,
   games
 })

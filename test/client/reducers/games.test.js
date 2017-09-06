@@ -31,3 +31,18 @@ test('adds a game', t => {
   const actual = games(state, action)
   t.deepEqual(actual, expected)
 })
+
+test('delete a game', t => {
+  const state = [{game_id: 1}, {game_id: 2}]
+  const action = {
+    type: 'DELETE_GAME',
+    game: {
+      game_id: 1
+    }
+  }
+
+  const expected = [{game_id: 2}]
+  const actual = games(state, action)
+
+  t.deepEqual(actual, expected)
+})

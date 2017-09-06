@@ -81,16 +81,3 @@ export default class Player extends React.Component {
     : <div>Who?</div>
   }
 }
-
-// (
-//   <div className="playerStats">
-//     {batting
-//       ? <BattingStats batting={batting} />
-//       :
-//     }
-//     {
-//       bowling
-//         ? <BowlingStats bowling={bowling} />
-//     }
-//   </div>
-// )
