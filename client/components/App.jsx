@@ -20,9 +20,7 @@ export default class App extends React.Component {
 
     }
   }
-  // componentWillMount() {
 
-  // }
   render() {
     let {err} = this.state
     return (

@@ -32,15 +32,6 @@ router.post('/', (req, res) => {
     })
 })
 
-// router.post('/team/profile/:id', function(req, res) {
-//   var id = req.params.id
-//   var body = req.body
-//   db.editProfile(id, body, req.app.get('db'))
-//     .then(function(player) {
-//       res.redirect('/team/profile/' + id)
-//     })
-// })
-
 router.get('/', function(req, res) {
   playerDb.getPlayer(req.app.get('db'))
     .then(function(players) {

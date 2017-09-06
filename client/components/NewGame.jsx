@@ -10,7 +10,6 @@ class NewGame extends React.Component {
     this.state = {
       newGame: {},
       newGameFormToggle: false
-      // showVisible: false
     }
   }
 

@@ -32,7 +32,7 @@ test('adds a game', t => {
   t.deepEqual(actual, expected)
 })
 
-test.only('delete a game', t => {
+test('delete a game', t => {
   const state = [{game_id: 1}, {game_id: 2}]
   const action = {
     type: 'DELETE_GAME',

@@ -3,11 +3,6 @@ var router = express.Router()
 
 var gameDb = require('../db/gameDb')
 
-//seperate the /team routes into a teamRouter.js file, have a seperate server,use for /v1/team to remove redundancy
-
-
-//seperate these out to a gameRouter.js file, and add a server.use for '/v1/games' (rename from newGame to games)
-
 router.get('/', (req, res) => {
   gameDb.showGameList(req.body, req.app.get('db'))
     .then((game) => {
