@@ -48,7 +48,6 @@ export function addPlayerRequest (newPlayer) {
 
 //DELETE
 export const deletePlayerAction = (player) => {
-  console.log({player});
   return {
     type: 'DELETE_PLAYER' ,
     player
