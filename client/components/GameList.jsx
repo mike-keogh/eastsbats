@@ -6,7 +6,14 @@ import { deleteGameRequest } from '../actions/games'
 export class GameList extends React.Component {
   constructor(props){
     super(props)
+
   }
+  // this.toggleFormFromChild = this.toggleFormFromChild.bind(this)
+  //
+  // toggleFormFromChild() {
+  //   this.props.toggleSelected()
+  // }
+
 
   render() {
     const {game} = this.props
@@ -17,7 +24,7 @@ export class GameList extends React.Component {
         <td>{game.date}</td>
         <td>{game.season}</td>
         <td><button onClick={ () => this.props.deleteGame(game)}>✗</button></td>
-        <td><button>Update</button></td>
+        <td><button onClick={ this.props.toggleSelected()}>Update</button></td>
         <td><button>Innings</button></td>
       </tr>
 

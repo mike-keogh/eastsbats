@@ -30,7 +30,7 @@ export const addGameAction = (newGame) => {
   }
 }
 
-//use the receive game request in the dipatch of the post to update new data after the post
+//use the receive game request in the dispatch of the post to update new data after the post
 export function addGameRequest (newGame) {
   return (dispatch) => {
     request

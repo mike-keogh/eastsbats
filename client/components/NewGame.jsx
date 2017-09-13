@@ -42,7 +42,7 @@ class NewGame extends React.Component {
     const { games } = this.props
     return (
       <div className="gameForm">
-        <button className="formButton" onClick={(e) => this.toggleSelected()}>New Game</button>
+        <button  className="formButton" onClick={(e) => this.toggleSelected()}>New Game</button>
         {this.state.newGameFormToggle &&
           <div className='newGameComp'>
             <h4>Update A New Game</h4>
@@ -72,7 +72,7 @@ class NewGame extends React.Component {
             </thead>
             <tbody>
             {games.map((game, i) => {
-              return <GameList game={game} key={i} />
+              return <GameList game={game} key={i} toggleSelected={() => this.toggleSelected.bind(this)}/>
             })}
           </tbody>
           </table>

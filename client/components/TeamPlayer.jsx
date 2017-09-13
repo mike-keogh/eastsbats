@@ -31,7 +31,6 @@ class TeamPlayer extends React.Component {
         </Link>
         {' _ ' }
         {this.state.hover &&
-
           <button style={{cursor: 'no-drop'}} onClick={() => this.props.dispatch(deletePlayerRequest(player))}> ✗</button>
         }
         </h4>
