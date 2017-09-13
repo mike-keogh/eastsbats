@@ -8,12 +8,6 @@ export class GameList extends React.Component {
     super(props)
 
   }
-  // this.toggleFormFromChild = this.toggleFormFromChild.bind(this)
-  //
-  // toggleFormFromChild() {
-  //   this.props.toggleSelected()
-  // }
-
 
   render() {
     const {game} = this.props

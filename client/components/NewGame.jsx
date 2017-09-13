@@ -84,7 +84,6 @@ class NewGame extends React.Component {
 function mapStateToProps (state, props) {
     return {
       games: state.games,
-      //should be visible state goes here?
     }
   }
 
