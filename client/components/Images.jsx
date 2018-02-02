@@ -1,13 +1,30 @@
-import React from 'react'
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-export default function Images (props) {
-  return (
-    <div className='teamImages'>
-      <img src='/images/chanelling_trent_boult.jpg' />
-      <img src='/images/post_match_banter.jpg' />
-      <img src='/images/post-match_byc.jpg' />
-      <img src='/images/technical_application_par_excellence.jpg' />
-      <img src='/images/waiting_for_an_edge.jpg' />
-    </div>
-  )
+import { getImages } from "../actions/images";
+
+class Images extends Component {
+  constructor(props) {
+    super(props);
+    this.renderImages = this.renderImages.bind(this);
+  }
+  componentDidMount() {
+    this.props.dispatch(getImages());
+  }
+
+  renderImages() {
+    return this.props.images.map((image, i) => {
+      console.log("image", image);
+      return <img src={image.image} key={i} />;
+    });
+  }
+  render() {
+    return <div>{this.renderImages()}</div>;
+  }
 }
+
+const mapStateToProps = state => {
+  return state;
+};
+
+export default connect(mapStateToProps)(Images);
